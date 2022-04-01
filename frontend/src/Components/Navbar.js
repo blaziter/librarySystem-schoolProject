@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container, Form, FormControl, Button } from 'react-bootstrap';
+import NavbarAccount from './NavbarAccount';
 
 const NavbarComponent = () => {
     const [content, setContent] = useState("");
@@ -26,12 +27,12 @@ const NavbarComponent = () => {
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container fluid>
-                    <Navbar.Brand href="#home">Home</Navbar.Brand>
+                    <Navbar.Brand href="/">Home</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#features">Features</Nav.Link>
-                            <Nav.Link href="#pricing">Pricing</Nav.Link>
+                            <Nav.Link href="/">Books</Nav.Link>
+                            <Nav.Link href="/">Pricing</Nav.Link>
                         </Nav>
                         <Form className="d-flex" onSubmit={searchHandler}>
                             <FormControl
@@ -43,6 +44,7 @@ const NavbarComponent = () => {
                             />
                             <Button variant="outline-success" type="submit">Search</Button>
                         </Form>
+                        <NavbarAccount />
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
