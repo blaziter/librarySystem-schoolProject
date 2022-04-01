@@ -4,7 +4,7 @@ import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 const Login = () => {
     return (
         <>
-            <Card>
+            <Card className="loginSystem">
                 <Card.Body>
                     <Row className="mb-3">
                         <Form.Group as={Col} controlId="formGridEmail">

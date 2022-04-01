@@ -5,14 +5,12 @@ import './Styles/index.css';
 
 import NavbarComponent from './Components/Navbar';
 import TestBackend from './Components/TestBackend';
-import Register from './Components/LoginSystem/Register';
 
 const App = () => {
-  return(
+  return (
     <>
       <NavbarComponent />
       <TestBackend />
-      <Register />
     </>
   );
 }

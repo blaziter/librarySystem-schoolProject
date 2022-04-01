@@ -4,7 +4,7 @@ import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 const Register = () => {
     return (
         <>
-            <Card>
+            <Card className="loginSystem">
                 <Card.Body>
                     <Form>
 
