@@ -17,8 +17,8 @@ const Login = () => {
                             <Form.Control type="password" placeholder="Password" />
                         </Form.Group>
                     </Row>
-                    <Button variant="primary" type="submit">
-                        Sign In
+                    <Button variant="primary" type="submit" className="float-right">
+                        Log In
                     </Button>
                 </Card.Body>
             </Card>

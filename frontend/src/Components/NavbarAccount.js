@@ -6,10 +6,10 @@ const NavbarAccount = () => {
 
     return (
         <>
-            <Nav className="loginNav">
+            <Nav className="padding-left-05rem">
                 <Button variant="outline-success">Log In</Button>
             </Nav>
-            <Nav className="loginNav">
+            <Nav className="padding-left-05rem">
                 <Button variant="outline-success">Sign In</Button>
             </Nav>
         </>

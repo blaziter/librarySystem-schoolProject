@@ -5,12 +5,15 @@ import './Styles/index.css';
 
 import NavbarComponent from './Components/Navbar';
 import TestBackend from './Components/TestBackend';
+import Login from './Components/LoginRoutes/Login';
+import Register from './Components/LoginRoutes/Register';
+import BookDisplay from './Components/BooksDisplay/BookDisplay';
 
 const App = () => {
   return (
     <>
       <NavbarComponent />
-      <TestBackend />
+      <BookDisplay />
     </>
   );
 }

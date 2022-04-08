@@ -1,5 +1,9 @@
-.loginNav {
+.padding-left-05rem {
     padding-left: 0.5rem;
+}
+
+.padding-right-05rem {
+    padding-right: 0.5rem;
 }
 
 .loginSystem {
@@ -7,6 +11,20 @@
     width: 75vw;
 }
 
-.bookTable {
-    margin: 0.5rem auto;
+.margin-1rem {
+    margin: 1rem;
+}
+
+.float-right {
+    float: right;
+}
+
+.book {
+    width: 15rem;
+    margin: auto;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #ffffff !important;
+    color: #000000 !important;
 }
