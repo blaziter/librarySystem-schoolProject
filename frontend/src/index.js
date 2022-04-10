@@ -8,14 +8,15 @@ import TestBackend from './Components/TestBackend';
 import Login from './Components/LoginRoutes/Login';
 import Register from './Components/LoginRoutes/Register';
 import BookDisplay from './Components/BooksDisplay/BookDisplay';
+import Auth from './Components/Auth';
 
 const App = () => {
   return (
     <>
-      <NavbarComponent />
-      <BookDisplay />
+      <Auth />
     </>
   );
 }
-
+//<NavbarComponent />
+//<BookDisplay />
 ReactDOM.render(<App />, document.getElementById('root'));
