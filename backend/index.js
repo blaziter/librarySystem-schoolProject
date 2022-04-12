@@ -11,8 +11,6 @@ const cors = require('cors');
 const app = express();
 const PORT = 9000;
 
-require('dotenv').config();
-
 const testAPIRouter = require("./routes/testAPI");
 const bookRouter = require('./routes/book');
 const userRouter = require('./routes/user');

@@ -1,20 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Styles/index.css';
 
-import NavbarDisplay from './Components/NavbarDisplay/Navbar';
-import TestBackend from './Components/TestBackend';
-import BookDisplay from './Components/BooksDisplay/BookDisplay';
+import App from './App';
 
-const App = () => {
-  return (
-    <>
-      <NavbarDisplay />
-      <BookDisplay />
-    </>
-  );
-}
-//<NavbarComponent />
-//<BookDisplay />
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root")
+);

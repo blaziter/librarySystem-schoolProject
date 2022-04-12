@@ -27,6 +27,12 @@
     word-break: break-all;
 }
 
+.error-page {
+    text-align: center;
+    margin: 1rem auto;
+    width: 25rem;
+}
+
 .accordion-button:not(.collapsed) {
     background-color: #ffffff !important;
     color: #000000 !important;

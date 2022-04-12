@@ -2,6 +2,7 @@
     "env": {
         "MONGODB_PW": "admin",
         "CLIENT_ID": "941067141726-c6kr5ssvu8e3j4clig7coa1qscj6aasn.apps.googleusercontent.com",
-        "CLIENT_SECRET": "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"
+        "CLIENT_SECRET": "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",
+        "IP": "192.168.137.1"
     }
 }

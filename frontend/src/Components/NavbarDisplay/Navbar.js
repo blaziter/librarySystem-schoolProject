@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, Container, Form, FormControl, Button } from 'react-bootstrap';
-import NavbarAccount from './NavbarAccount';
+
+import Auth from './Auth';
 
 const NavbarDisplay = () => {
     const [content, setContent] = useState("");
@@ -27,12 +29,19 @@ const NavbarDisplay = () => {
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container fluid>
-                    <Navbar.Brand href="/">Home</Navbar.Brand>
+                    <LinkContainer to="/">
+                        <Navbar.Brand>
+                            Home
+                        </Navbar.Brand>
+                    </LinkContainer>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="/">Books</Nav.Link>
-                            <Nav.Link href="/">Pricing</Nav.Link>
+                            <LinkContainer to="/test">
+                                <Nav.Link>
+                                    Test
+                                </Nav.Link>
+                            </LinkContainer>
                         </Nav>
                         <Form className="d-flex" onSubmit={searchHandler}>
                             <FormControl
@@ -44,7 +53,9 @@ const NavbarDisplay = () => {
                             />
                             <Button variant="outline-success" type="submit">Search</Button>
                         </Form>
-                        <NavbarAccount />
+                        <Nav>
+                            <Auth />
+                        </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
