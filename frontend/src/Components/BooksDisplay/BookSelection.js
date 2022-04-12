@@ -5,7 +5,7 @@ const BookSelection = () => {
     
     return (
         <>
-            <Card className="margin-1rem book-selection">
+            <Card className="margin-1rem word-break">
                 <Card.Body>
                     <Accordion defaultActiveKey={['0']} flush alwaysOpen>
                         <Accordion.Item className="accordion-item" eventKey="0">
@@ -18,7 +18,7 @@ const BookSelection = () => {
                                         Hi
                                     </ListGroup.Item>
                                     <ListGroup.Item>
-                                        Beletriehhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+                                        Beletrie
                                     </ListGroup.Item>
                                 </ListGroup>
                             </Accordion.Body>

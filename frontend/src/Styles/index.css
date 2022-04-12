@@ -19,8 +19,12 @@
 }
 
 .book {
-    width: 15rem;
+    width: 13rem;
     margin: auto;
+}
+
+.word-break {
+    word-break: break-all;
 }
 
 .accordion-button:not(.collapsed) {

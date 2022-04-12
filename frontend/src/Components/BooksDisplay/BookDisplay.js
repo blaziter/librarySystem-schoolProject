@@ -10,7 +10,7 @@ const BookDisplay = () => {
         <>
             <Container>
                 <Row>
-                    <Col xs="auto">
+                    <Col xs="lg">
                         <BookSelection />
                     </Col>
                     <Col xs="auto">

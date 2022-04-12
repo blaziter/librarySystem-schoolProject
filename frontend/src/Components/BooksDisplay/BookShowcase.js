@@ -13,8 +13,7 @@ const BookShowcase = () => {
                                 <Card.Body>
                                     <Card.Title>Book</Card.Title>
                                     <Card.Text>Book Desc</Card.Text>
-                                    <Button variant="success" className="float-right">Buy</Button>
-                                    <Button variant="success" className="float-right">Borrow</Button>
+                                    <Button variant="success" className="float-right">Add to cart</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -24,8 +23,7 @@ const BookShowcase = () => {
                                 <Card.Body>
                                     <Card.Title>Book</Card.Title>
                                     <Card.Text>Book Desc</Card.Text>
-                                    <Button variant="success" className="float-right">Buy</Button>
-                                    <Button variant="success" className="float-right">Borrow</Button>
+                                    <Button variant="success" className="float-right">Add to cart</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -35,8 +33,7 @@ const BookShowcase = () => {
                                 <Card.Body>
                                     <Card.Title>Book</Card.Title>
                                     <Card.Text>Book Desc</Card.Text>
-                                    <Button variant="success" className="float-right">Buy</Button>
-                                    <Button variant="success" className="float-right">Borrow</Button>
+                                    <Button variant="success" className="float-right">Add to cart</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -46,8 +43,7 @@ const BookShowcase = () => {
                                 <Card.Body>
                                     <Card.Title>Book</Card.Title>
                                     <Card.Text>Book Desc</Card.Text>
-                                    <Button variant="success" className="float-right">Buy</Button>
-                                    <Button variant="success" className="float-right">Borrow</Button>
+                                    <Button variant="success" className="float-right">Add to cart</Button>
                                 </Card.Body>
                             </Card>
                         </Col>

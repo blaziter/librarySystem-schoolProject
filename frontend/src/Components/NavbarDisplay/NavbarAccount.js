@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Nav } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import Auth from './Auth';
 
 const NavbarAccount = () => {
