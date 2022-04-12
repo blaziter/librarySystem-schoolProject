@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container, Form, FormControl, Button } from 'react-bootstrap';
 import NavbarAccount from './NavbarAccount';
 
-const NavbarComponent = () => {
+const NavbarDisplay = () => {
     const [content, setContent] = useState("");
 
     const searchHandler = async (e) => {
@@ -52,4 +52,4 @@ const NavbarComponent = () => {
     );
 }
 
-export default NavbarComponent;
+export default NavbarDisplay;
