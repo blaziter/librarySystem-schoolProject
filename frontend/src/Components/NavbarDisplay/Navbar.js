@@ -53,7 +53,7 @@ const NavbarDisplay = () => {
                             />
                             <Button variant="outline-success" type="submit">Search</Button>
                         </Form>
-                        <Nav>
+                        <Nav className="margin-left-05rem">
                             <Auth />
                         </Nav>
                     </Navbar.Collapse>

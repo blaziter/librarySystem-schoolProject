@@ -6,8 +6,16 @@
     padding-right: 0.5rem;
 }
 
+.margin-left-05rem {
+    margin-left: 0.5rem;
+}
+
 .margin-auto {
     margin: auto;
+}
+
+.margin-1rem-auto {
+    margin: 1rem auto;
 }
 
 .margin-1rem {

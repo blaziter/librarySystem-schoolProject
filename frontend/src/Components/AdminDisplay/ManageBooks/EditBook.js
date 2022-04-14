@@ -1,7 +1,9 @@
 import React from 'react';
 import { Button, Card, Container, Col, Form, Row } from 'react-bootstrap';
 
-const AddBook = () => {
+const EditBook = () => {
+
+    const bookName = "s";
 
     return (
         <>
@@ -9,7 +11,7 @@ const AddBook = () => {
                 <Card className="margin-1rem-auto">
                     <Card.Body>
                         <Card.Title>
-                            Add a book
+                            Editing book {bookName}
                         </Card.Title>
                         <Form>
                             <Row>
@@ -49,7 +51,7 @@ const AddBook = () => {
                                 <Form.Control placeholder="Year of publication" />
                             </Form.Group>
                         </Form>
-                        <Button variant="success" className="float-right">Publish</Button>
+                        <Button variant="success" className="float-right">Update book</Button>
                     </Card.Body>
                 </Card>
             </Container>
@@ -57,4 +59,4 @@ const AddBook = () => {
     );
 }
 
-export default AddBook;
+export default EditBook;
