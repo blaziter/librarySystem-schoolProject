@@ -42,6 +42,11 @@ const NavbarDisplay = () => {
                                     Test
                                 </Nav.Link>
                             </LinkContainer>
+                            <LinkContainer to="/admin">
+                                <Nav.Link>
+                                    Admin Dashboard
+                                </Nav.Link>
+                            </LinkContainer>
                         </Nav>
                         <Form className="d-flex" onSubmit={searchHandler}>
                             <FormControl

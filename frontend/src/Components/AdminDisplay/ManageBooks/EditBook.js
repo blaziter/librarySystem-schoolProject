@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import { Button, Card, Container, Col, Form, Row } from 'react-bootstrap';
 
 const EditBook = () => {
 
-    const bookName = "s";
+    const [book, setBook] = useState({});
+    const { id } = useParams();
+
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:9000/book/${id}`)
+            .then(res => {
+                const result = res.data;
+                setBook(result);
+            })
+    }, []);
 
     return (
         <>
@@ -11,7 +22,7 @@ const EditBook = () => {
                 <Card className="margin-1rem-auto">
                     <Card.Body>
                         <Card.Title>
-                            Editing book {bookName}
+                            Editing book {book.name}
                         </Card.Title>
                         <Form>
                             <Row>
@@ -36,7 +47,7 @@ const EditBook = () => {
                                     </Form.Group>
                                 </Col>
                                 <Col>
-                                <Form.Group className="mb-3" controlId="book.price">
+                                    <Form.Group className="mb-3" controlId="book.price">
                                         <Form.Label>Price: </Form.Label>
                                         <Form.Control placeholder="Price" />
                                     </Form.Group>
