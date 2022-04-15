@@ -21,14 +21,14 @@ const BookShowcase = () => {
                 <Card.Body>
                     <Row>
                         {
-                            books.map(() => {
+                            books.map((book) => {
                                 return (
                                     <Col>
                                         <Card className="book">
                                             <Card.Img src="logo192.png" fluid />
                                             <Card.Body>
-                                                <Card.Title>Book</Card.Title>
-                                                <Card.Text>Book Desc</Card.Text>
+                                                <Card.Title>{book.name}</Card.Title>
+                                                <Card.Text>{book.description}</Card.Text>
                                                 <Button variant="success" className="float-right">Add to cart</Button>
                                             </Card.Body>
                                         </Card>
