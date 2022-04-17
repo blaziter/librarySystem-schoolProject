@@ -8,6 +8,7 @@ const bookSchema = mongoose.Schema({
     author: { type: String, required: true},
     description: { type: String, required: true },
     price: { type: Number, required: true },
+    picture: { type: Buffer, contentType: String, required: true },
     year: { type: Number, required: true },
 }, {
     timestamps: true

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button, Card, Col, Row } from 'react-bootstrap';
+import { Button, Card, Col, Row, Pagination } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 const BookShowcase = () => {
@@ -12,7 +12,6 @@ const BookShowcase = () => {
                 const result = res.data.books;
                 setBooks(result);
             })
-
     }, []);
 
     return (
@@ -22,63 +21,43 @@ const BookShowcase = () => {
                     <Row>
                         {
                             books.map((book) => {
+                                console.log(book);
                                 return (
-                                    <Col>
-                                        <Card className="book">
-                                            <Card.Img src="logo192.png" fluid />
-                                            <Card.Body>
-                                                <Card.Title>{book.name}</Card.Title>
-                                                <Card.Text>{book.description}</Card.Text>
-                                                <Button variant="success" className="float-right">Add to cart</Button>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
+                                    <LinkContainer to={`book/${book._id}`}>
+                                        <Col>
+                                            <Card className="book">
+                                                <Card.Img src={book.picture} />
+                                                <Card.Body>
+                                                    <Card.Title>{book.name}</Card.Title>
+                                                    <Card.Text>{book.description}</Card.Text>
+                                                    <LinkContainer to="#">
+                                                        <Button variant="success" className="float-right">Add to cart</Button>
+                                                    </LinkContainer>
+                                                </Card.Body>
+                                            </Card>
+                                        </Col>
+                                    </LinkContainer>
                                 );
                             })
                         }
                     </Row>
-                    <Row>
-                        <Col>
-                            <Card className="book">
-                                <Card.Img src="logo192.png" fluid />
-                                <Card.Body>
-                                    <Card.Title>Book</Card.Title>
-                                    <Card.Text>Book Desc</Card.Text>
-                                    <Button variant="success" className="float-right">Add to cart</Button>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card className="book">
-                                <Card.Img src="logo192.png" fluid />
-                                <Card.Body>
-                                    <Card.Title>Book</Card.Title>
-                                    <Card.Text>Book Desc</Card.Text>
-                                    <Button variant="success" className="float-right">Add to cart</Button>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card className="book">
-                                <Card.Img src="logo192.png" fluid />
-                                <Card.Body>
-                                    <Card.Title>Book</Card.Title>
-                                    <Card.Text>Book Desc</Card.Text>
-                                    <Button variant="success" className="float-right">Add to cart</Button>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card className="book">
-                                <Card.Img src="logo192.png" fluid />
-                                <Card.Body>
-                                    <Card.Title>Book</Card.Title>
-                                    <Card.Text>Book Desc</Card.Text>
-                                    <Button variant="success" className="float-right">Add to cart</Button>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
+                    <Pagination className="float-right">
+                        <Pagination.First />
+                        <Pagination.Prev />
+                        <Pagination.Item>{1}</Pagination.Item>
+                        <Pagination.Ellipsis />
+
+                        <Pagination.Item>{10}</Pagination.Item>
+                        <Pagination.Item>{11}</Pagination.Item>
+                        <Pagination.Item active>{12}</Pagination.Item>
+                        <Pagination.Item>{13}</Pagination.Item>
+                        <Pagination.Item>{14}</Pagination.Item>
+
+                        <Pagination.Ellipsis />
+                        <Pagination.Item>{20}</Pagination.Item>
+                        <Pagination.Next />
+                        <Pagination.Last />
+                    </Pagination>
                 </Card.Body>
             </Card>
         </>

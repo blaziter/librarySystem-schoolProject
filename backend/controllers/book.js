@@ -2,7 +2,7 @@ const Book = require('../models/book');
 
 exports.getBooks = async (req, res) => {
     try {
-        const result = await Book.find().select("name year _id");
+        const result = await Book.find().select();
         if (result && result.length !== 0) {
             return res.status(200).json({
                 count: result.length,
@@ -49,11 +49,7 @@ exports.getBook = async (req, res) => {
 
 exports.postBook = async (req, res) => {
     try {
-        const book = new Book({
-            name: req.body.name,
-            description: req.body.description,
-            year: req.body.year,
-        });
+        const book = new Book(req.body);
         const result = await book.save();
         if (result) {
                 return res.status(201).json({
