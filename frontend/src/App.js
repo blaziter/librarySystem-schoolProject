@@ -12,6 +12,7 @@ const App = () => {
             <NavbarDisplay />
             <Routes>
                 <Route exact index element={<BookDisplay />} />
+                <Route path="/:page" element={<BookDisplay />} />
                 <Route path="test" element={<TestBackend />} />
                 <Route path="book/:id" element={<Book />} />
                 <Route path="user/update/:id" element={<UpdateAccount />} />
