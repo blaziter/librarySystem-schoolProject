@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Card } from 'react-bootstrap';
 
 const UpdateAccount = () => {
     const [user, setUser] = useState({});
+    const { id } = useParams();
 
-    /*const handleUpdate = () => {
-        axios.patch(`http://localhost:9000/user/${_id}`, user)
+    const handleUpdate = () => {
+        axios.patch(`http://localhost:9000/user/${id}`, user)
             .then((res) => {
                 console.log(res)
             })
             .catch((err) => {
                 console.log(err)
             });
-    }*/
+    }
 
-    /*useEffect(() => {
-        axios.get(`http://localhost:9000/user/${_id}`)
+    useEffect(() => {
+        axios.get(`http://localhost:9000/user/${id}`)
             .then(res => {
                 const result = res.data.user;
-                setUser(result);
+                console.log(result);
+                //setUser(result);
             })
 
-    }, []);*/
+    }, []);
 
     return (
         <>

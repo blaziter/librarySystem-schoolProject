@@ -15,12 +15,13 @@ const App = () => {
                 <Route path="test" element={<TestBackend />} />
                 <Route path="book/:id" element={<Book />} />
                 <Route path="user/update/:id" element={<UpdateAccount />} />
-                <Route path="admin" element={<AdminPage />} />
-                <Route path="admin/books" element={<BooksMenu />} />
-                <Route path="admin/book/add" element={<AddBook />} />
-                <Route path="admin/book/:id" element={<EditBook />} />
-                <Route path="admin/users" element={<UsersMenu />} />
-                <Route path="admin/user/:id" element={<EditUser />} />
+                <Route path="admin" element={<AdminPage />}>
+                    <Route path="books" element={<BooksMenu />} />
+                    <Route path="book/add" element={<AddBook />} />
+                    <Route path="book/:id" element={<EditBook />} />
+                    <Route path="users" element={<UsersMenu />} />
+                    <Route path="user/:id" element={<EditUser />} />
+                </Route>
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </>
