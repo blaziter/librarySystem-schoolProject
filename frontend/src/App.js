@@ -16,7 +16,8 @@ const App = () => {
                 <Route path="test" element={<TestBackend />} />
                 <Route path="book/:id" element={<Book />} />
                 <Route path="user/update/:id" element={<UpdateAccount />} />
-                <Route path="admin" element={<AdminPage />}>
+                <Route path="/admin">
+                    <Route index element={<AdminPage />} />
                     <Route path="books" element={<BooksMenu />} />
                     <Route path="book/add" element={<AddBook />} />
                     <Route path="book/:id" element={<EditBook />} />

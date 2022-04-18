@@ -16,6 +16,18 @@ const EditBook = () => {
             })
     }, []);
 
+    const handlePatch = async (e) => {
+        e.preventDefault();
+        console.log(book);
+        axios.patch(`http://localhost:9000/book/${id}`, book)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    }
+
     return (
         <>
             <Container>
@@ -24,16 +36,16 @@ const EditBook = () => {
                         <Card.Title>
                             Editing book {book.name}
                         </Card.Title>
-                        <Form>
+                        <Form onSubmit={handlePatch}>
                             <Row>
                                 <Col>
-                                    <Form.Group className="mb-3" controlId="book.name">
+                                    <Form.Group className="mb-3" controlId="book.name" onChange={e => setBook({ ...book, name: e.target.value })}>
                                         <Form.Label>Book's name: </Form.Label>
                                         <Form.Control placeholder="Book's name" />
                                     </Form.Group>
                                 </Col>
                                 <Col>
-                                    <Form.Group className="mb-3" controlId="formFile">
+                                    <Form.Group className="mb-3" controlId="formFile" onChange={e => setBook({ ...book, picture: e.target.value })}>
                                         <Form.Label>Book cover</Form.Label>
                                         <Form.Control type="file" />
                                     </Form.Group>
@@ -41,28 +53,28 @@ const EditBook = () => {
                             </Row>
                             <Row>
                                 <Col>
-                                    <Form.Group className="mb-3" controlId="book.author">
+                                    <Form.Group className="mb-3" controlId="book.author" onChange={e => setBook({ ...book, author: e.target.value })}>
                                         <Form.Label>Author: </Form.Label>
                                         <Form.Control placeholder="Author" />
                                     </Form.Group>
                                 </Col>
                                 <Col>
-                                    <Form.Group className="mb-3" controlId="book.price">
+                                    <Form.Group className="mb-3" controlId="book.price" onChange={e => setBook({ ...book, price: e.target.value })}>
                                         <Form.Label>Price: </Form.Label>
-                                        <Form.Control placeholder="Price" />
+                                        <Form.Control placeholder="Price" type="number" />
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            <Form.Group className="mb-3" controlId="book.desc">
+                            <Form.Group className="mb-3" controlId="book.desc" onChange={e => setBook({ ...book, description: e.target.value })}>
                                 <Form.Label>Description: </Form.Label>
                                 <Form.Control placeholder="Description" as="textarea" rows={3} />
                             </Form.Group>
-                            <Form.Group className="mb-3" controlId="book.year">
+                            <Form.Group className="mb-3" controlId="book.year" onChange={e => setBook({ ...book, year: e.target.value })}>
                                 <Form.Label>Book's year of publication: </Form.Label>
-                                <Form.Control placeholder="Year of publication" />
+                                <Form.Control placeholder="Year of publication" type="number" />
                             </Form.Group>
+                            <Button variant="success" className="float-right" type="submit">Update book</Button>
                         </Form>
-                        <Button variant="success" className="float-right">Update book</Button>
                     </Card.Body>
                 </Card>
             </Container>

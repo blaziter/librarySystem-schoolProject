@@ -48,15 +48,7 @@ const BookShowcase = () => {
                         <Pagination.First />
                         <Pagination.Prev />
                         {   
-                            books.map(() => {
-                                i++;
-                                if (i == page) return (
-                                    <Pagination.Item active>{i}</Pagination.Item>
-                                );
-                                return (
-                                    <Pagination.Item>{i}</Pagination.Item>
-                                );   
-                            })
+                            (books.length%20 == 0) && <Pagination.Item>{books.length%20}</Pagination.Item>
                         }
                         <Pagination.Next />
                         <Pagination.Last />

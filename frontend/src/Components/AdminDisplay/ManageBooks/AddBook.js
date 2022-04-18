@@ -13,7 +13,6 @@ const AddBook = () => {
 
     const handlePost = async (e) => {
         e.preventDefault();
-        console.log(book);
         axios.post('http://localhost:9000/book/', book)
             .then((res) => {
                 console.log(res)

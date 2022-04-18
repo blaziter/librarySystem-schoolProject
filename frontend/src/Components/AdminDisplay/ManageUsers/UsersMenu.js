@@ -32,7 +32,9 @@ const UsersMenu = () => {
                                             <Card.Title>
                                                 {user.username}
                                             </Card.Title>
-                                            <Button variant="success" className="float-right">Edit {user.username}</Button>
+                                            <LinkContainer to={`/admin/user/${user._id}`}>
+                                                <Button variant="success" className="float-right">Edit {user.username}</Button>
+                                            </LinkContainer>
                                         </Card.Body>
                                     </Card>
                                 );

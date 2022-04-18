@@ -6,8 +6,7 @@ const passport = require(`passport`);
 router.get('/', userController.getUsers);
 router.get('/:id', userController.getUser);
 router.post('/', userController.addUser);
-//router.put('/:id', userController.putUser);
-//router.patch('/:id', userController.patchUser);
+router.patch('/:id', userController.patchUser);
 //router.delete('/:id', userController.deleteUser);
 router.get(`/auth/google`,
     passport.authenticate(`google`, { scope: [`profile`] })

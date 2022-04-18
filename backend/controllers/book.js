@@ -72,38 +72,9 @@ exports.postBook = async (req, res) => {
     }
 };
 
-exports.putBook = async (req, res) => {
-    try {
-        const update = {
-            name: req.body.name,
-            description: req.body.description,
-            year: req.body.year,
-        };
-        const result = await Book.findByIdAndUpdate(req.params.id, update);
-        if (result) {
-            return res.status(200).json({
-                msg: `Book ${req.params.id} was updated`,
-                request: {
-                    type: "GET",
-                    url: `http://127.0.0.1:3000/book/${req.params.id}`,
-                },
-            });
-        }
-        res.status(500).json({ msg: "Book could not be updated" });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            error: error,
-        });
-    }
-};
-
 exports.patchBook = async (req, res) => {
     try {
-        const update = {};
-        for (const ops of req.body) {
-            update[ops.propName] = ops.value;
-        }
+        const update = req.body;
         const result = await Book.findByIdAndUpdate(req.params.id, update);
         if (result) {
             return res.status(200).json({
