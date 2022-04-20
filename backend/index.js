@@ -11,7 +11,6 @@ const cors = require('cors');
 const app = express();
 const PORT = 9000;
 
-const testAPIRouter = require("./routes/testAPI");
 const bookRouter = require('./routes/book');
 const userRouter = require('./routes/user');
 
@@ -37,6 +36,5 @@ app.use(cors());
 
 app.use('/book', bookRouter);
 app.use('/user', userRouter);
-app.use("/testAPI", testAPIRouter);
 
 app.listen(PORT, () => `Server is running on port ${PORT}`);

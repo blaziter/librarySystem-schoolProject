@@ -3,9 +3,11 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, Container, Form, FormControl, Button } from 'react-bootstrap';
 
 import Auth from './Auth';
+import AccDropdown from './AccDropdown';
 
 const NavbarDisplay = () => {
     const [content, setContent] = useState("");
+    const [loginState, setLoginState] = useState(false);
 
     const searchHandler = async (e) => {
         e.preventDefault();
@@ -37,11 +39,6 @@ const NavbarDisplay = () => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <LinkContainer to="/test">
-                                <Nav.Link>
-                                    Test
-                                </Nav.Link>
-                            </LinkContainer>
                             <LinkContainer to="/admin">
                                 <Nav.Link>
                                     Admin Dashboard
@@ -59,7 +56,7 @@ const NavbarDisplay = () => {
                             <Button variant="outline-success" type="submit">Search</Button>
                         </Form>
                         <Nav className="margin-left-05rem">
-                            <Auth />
+                            { loginState ? <AccDropdown /> : <AccDropdown /> }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

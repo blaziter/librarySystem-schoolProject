@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Styles/index.css';
 
-import { AddBook, AdminPage, Book, BookDisplay, BooksMenu, EditBook, EditUser, ErrorPage, NavbarDisplay, TestBackend, UpdateAccount, UsersMenu } from './Pages';
+import { Account, AddBook, AdminPage, Book, BookDisplay, BooksMenu, EditBook, EditUser, ErrorPage, NavbarDisplay, UpdateAccount, UsersMenu } from './Pages';
 
 const App = () => {
     return (
@@ -12,11 +12,12 @@ const App = () => {
             <NavbarDisplay />
             <Routes>
                 <Route exact index element={<BookDisplay />} />
-                <Route path="/:page" element={<BookDisplay />} />
-                <Route path="test" element={<TestBackend />} />
                 <Route path="book/:id" element={<Book />} />
-                <Route path="user/update/:id" element={<UpdateAccount />} />
-                <Route path="/admin">
+                <Route path="user/:id">
+                    <Route index element={<Account />} />
+                    <Route path="update" element={<UpdateAccount />} />
+                </Route>
+                <Route path="admin">
                     <Route index element={<AdminPage />} />
                     <Route path="books" element={<BooksMenu />} />
                     <Route path="book/add" element={<AddBook />} />

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Button, Card, Container, Col, Form, Row } from 'react-bootstrap';
 
 const EditBook = () => {
 
     const [book, setBook] = useState({});
     const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`http://127.0.0.1:9000/book/${id}`)
@@ -14,9 +15,12 @@ const EditBook = () => {
                 const result = res.data;
                 setBook(result);
             })
+            .catch(error => {
+                navigate("/error");
+            })
     }, []);
 
-    const handlePatch = async (e) => {
+    const handlePatch = (e) => {
         e.preventDefault();
         console.log(book);
         axios.patch(`http://localhost:9000/book/${id}`, book)
@@ -26,6 +30,13 @@ const EditBook = () => {
             .catch((err) => {
                 console.log(err)
             });
+    }
+
+    const handleDelete = (e) => {
+        axios.delete(`http://localhost:9000/book/${id}`)
+        .then((res) => {
+            navigate("/");
+        })
     }
 
     return (
@@ -74,6 +85,7 @@ const EditBook = () => {
                                 <Form.Control placeholder="Year of publication" type="number" />
                             </Form.Group>
                             <Button variant="success" className="float-right" type="submit">Update book</Button>
+                            <Button variant="danger" className="float-right margin-right-05rem" onClick={handleDelete}>Delete book</Button>
                         </Form>
                     </Card.Body>
                 </Card>
