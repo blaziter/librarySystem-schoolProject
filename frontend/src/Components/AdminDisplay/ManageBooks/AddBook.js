@@ -10,16 +10,20 @@ const AddBook = () => {
         price: 0,
         year: 0
     });
+    const [showToast, setShowToast] = useState(false);
 
     const handlePost = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:9000/book/', book)
-            .then((res) => {
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err)
-            });
+        if (book.name.length() > 3 && !book.picture && !book.author && !book.description) {
+            axios.post('http://localhost:9000/book/', book)
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch((err) => {
+                    console.log(err)
+                });
+        }
+        setShowToast(true);
     }
 
     return (
@@ -71,14 +75,16 @@ const AddBook = () => {
                         </Form>
                     </Card.Body>
                 </Card>
-                <ToastContainer className="p-3" position="bottom-end">
-                    <Toast delay={3000} autohide>
-                        <Toast.Header>
-                        <strong className="me-auto">Error!</strong>
-                        </Toast.Header>
-                        <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
-                    </Toast>
-                </ToastContainer>
+                {
+                    showToast && <ToastContainer className="p-3" position="bottom-end">
+                        <Toast delay={3000} autohide>
+                            <Toast.Header>
+                                <strong className="me-auto">Error!</strong>
+                            </Toast.Header>
+                            <Toast.Body>Book's name should be longer than 3 characters and not enough sufficient data entered!</Toast.Body>
+                        </Toast>
+                    </ToastContainer>
+                }
             </Container>
 
         </>

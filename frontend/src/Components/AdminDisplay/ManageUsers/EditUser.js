@@ -5,6 +5,8 @@ import { useParams } from 'react-router-dom';
 
 const EditUser = () => {
     const [user, setUser] = useState([]);
+    const [editedUser, setEditedUser] = useState([]);
+    const [showToast, setShowToast] = useState(false);
     const { id } = useParams();
 
     useEffect(() => {
@@ -18,14 +20,17 @@ const EditUser = () => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        console.log(user);
-        axios.patch(`http://localhost:9000/user/${id}`, user)
-            .then((res) => {
-                console.log(res)
-            })
-            .catch((err) => {
-                console.log(err)
-            });
+        if (editedUser.name.length() > 3 && !editedUser.role) {
+            setUser(editedUser);
+            axios.patch(`http://localhost:9000/user/${id}`, user)
+                .then((res) => {
+                    console.log(res)
+                })
+                .catch((err) => {
+                    console.log(err)
+                });
+        }
+        setShowToast(true);
     }
 
     return (
@@ -39,13 +44,13 @@ const EditUser = () => {
                         <Form onSubmit={handleUpdate}>
                             <Row>
                                 <Col>
-                                    <Form.Group className="mb-3" controlId="changeUserName" onChange={e => setUser(e.target.value.trim() != "" ? { ...user, username: e.target.value } : { ...user })}>
-                                    <Form.Label>New username: </Form.Label>
+                                    <Form.Group className="mb-3" controlId="changeUserName" onChange={e => setEditedUser(e.target.value.trim() != "" ? { ...user, username: e.target.value } : { ...user })}>
+                                        <Form.Label>New username: </Form.Label>
                                         <Form.Control placeholder="New username" />
                                     </Form.Group>
                                 </Col>
                                 <Col>
-                                    <Form.Group className="mb-3" controlId="changeRole" onChange={e => setUser(e.target.value != "Open this select menu" ? { ...user, role: e.target.value } : { ...user })}>
+                                    <Form.Group className="mb-3" controlId="changeRole" onChange={e => setEditedUser(e.target.value != "Open this select menu" ? { ...user, role: e.target.value } : { ...user })}>
                                         <Form.Label>
                                             Role:
                                         </Form.Label>
