@@ -2,7 +2,7 @@ const User = require('../models/user');
 
 exports.getUsers = async (req, res) => {
     try {
-        const result = await User.find().select("username _id");
+        const result = await User.find().select();
         if (result && result.length !== 0) {
             return res.status(200).json({
                 count: result.length,

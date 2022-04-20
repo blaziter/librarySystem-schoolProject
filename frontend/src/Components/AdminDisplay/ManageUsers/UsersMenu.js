@@ -27,11 +27,14 @@ const UsersMenu = () => {
                         {
                             users.map((user) => {
                                 return (
-                                    <Card key={user._id}>
+                                    <Card key={user._id} className="margin-top-1rem">
                                         <Card.Body>
                                             <Card.Title>
                                                 {user.username}
                                             </Card.Title>
+                                            <Card.Subtitle className="mb-2 text-muted">
+                                                {user.role}
+                                            </Card.Subtitle>
                                             <LinkContainer to={`/admin/user/${user._id}`}>
                                                 <Button variant="success" className="float-right">Edit {user.username}</Button>
                                             </LinkContainer>

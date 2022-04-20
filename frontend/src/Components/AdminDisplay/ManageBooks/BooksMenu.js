@@ -18,7 +18,7 @@ const BooksMenu = () => {
     return (
         <>
             <Container>
-                <Card>
+                <Card className="margin-1rem-auto">
                     <Card.Body>
                         <Card.Title>
                             Books
@@ -26,7 +26,7 @@ const BooksMenu = () => {
                         {
                             books.map((book) => {
                                 return (
-                                    <Card key={book._id}>
+                                    <Card key={book._id} className="margin-top-1rem">
                                         <Card.Body>
                                             <Card.Img>
 
@@ -34,6 +34,9 @@ const BooksMenu = () => {
                                             <Card.Title>
                                                 {book.name}
                                             </Card.Title>
+                                            <Card.Subtitle className="mb-2 text-muted">
+                                                {book.author}
+                                            </Card.Subtitle>
                                             <Card.Text>
                                                 {book.description}
                                             </Card.Text>
