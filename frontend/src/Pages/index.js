@@ -1,3 +1,4 @@
+export { default as CartDisplay } from '../Components/Cart/CartDisplay';
 export { default as Book } from '../Components/BooksDisplay/Book';
 export { default as ErrorPage } from '../Components/Error/ErrorPage';
 export { default as Account } from '../Components/UserDisplay/Account';

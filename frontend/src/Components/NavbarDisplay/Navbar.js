@@ -44,6 +44,11 @@ const NavbarDisplay = () => {
                                     Admin Dashboard
                                 </Nav.Link>
                             </LinkContainer>
+                            <LinkContainer to="/cart">
+                                <Nav.Link>
+                                    Cart
+                                </Nav.Link>
+                            </LinkContainer>
                         </Nav>
                         <Form className="d-flex" onSubmit={searchHandler}>
                             <FormControl

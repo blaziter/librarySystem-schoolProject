@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
 
 const CartDisplay = () => {
     const [items, setItems] = useState([]);
@@ -11,7 +11,7 @@ const CartDisplay = () => {
     return (
         <>
             <Container>
-                <Card>
+                <Card className="margin-1rem-auto">
                     <Card.Body>
                         
                     </Card.Body>
