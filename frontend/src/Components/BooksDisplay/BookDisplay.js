@@ -10,10 +10,10 @@ const BookDisplay = () => {
         <>
             <Container>
                 <Row>
-                    <Col xs="lg">
+                    <Col xs="auto">
                         <BookSelection />
                     </Col>
-                    <Col xs="auto">
+                    <Col xs="xl">
                         <BookShowcase />
                     </Col>
                 </Row>

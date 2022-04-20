@@ -21,14 +21,14 @@ const BookShowcase = () => {
         <>
             <Card className="margin-1rem float-right">
                 <Card.Body>
-                    <Row>
+                    <Row xs={1} md={4} className="g-4">
                         {
                             books.map((book) => {
                                 console.log(book);
                                 return (
                                     <LinkContainer to={`book/${book._id}`}>
                                         <Col>
-                                            <Card className="book">
+                                            <Card className="word-break">
                                                 <Card.Img src={book.picture} />
                                                 <Card.Body>
                                                     <Card.Title>{book.name}</Card.Title>
@@ -48,7 +48,7 @@ const BookShowcase = () => {
                         <Pagination.First />
                         <Pagination.Prev />
                         {   
-                            (books.length%20 == 0) && <Pagination.Item>{books.length%20}</Pagination.Item>
+                            <Pagination.Item>{books.length%20}</Pagination.Item>
                         }
                         <Pagination.Next />
                         <Pagination.Last />

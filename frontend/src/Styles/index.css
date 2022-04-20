@@ -22,13 +22,31 @@
     margin: 1rem;
 }
 
+.float-left {
+    float: left;
+}
+
 .float-right {
     float: right;
+}
+
+.align-self-flex-end {
+    align-self: flex-end;
 }
 
 .book {
     width: 13rem;
     margin-bottom: 1rem;
+}
+
+.book-image {
+    width: 250px;
+    display: block;
+    padding-right: 1rem;
+}
+
+.display-flex {
+    display: flex;
 }
 
 .word-break {
