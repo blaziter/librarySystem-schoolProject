@@ -1,7 +1,6 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
-import BookSelection from './BookSelection';
 import BookShowcase from './BookShowcase';
 
 const BookDisplay = () => {
@@ -9,14 +8,7 @@ const BookDisplay = () => {
     return (
         <>
             <Container>
-                <Row>
-                    <Col xs="auto">
-                        <BookSelection />
-                    </Col>
-                    <Col xs="xl">
-                        <BookShowcase />
-                    </Col>
-                </Row>
+                <BookShowcase />
             </Container>
         </>
     );
