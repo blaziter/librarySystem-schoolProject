@@ -66,6 +66,16 @@ const EditUser = () => {
                         </Form>
                     </Card.Body>
                 </Card>
+                {
+                    showToast && <ToastContainer className="p-3" position="bottom-end">
+                        <Toast delay={3000} autohide>
+                            <Toast.Header>
+                                <strong className="me-auto">Error!</strong>
+                            </Toast.Header>
+                            <Toast.Body>User's username should be longer than 3 characters and not enough sufficient data entered!</Toast.Body>
+                        </Toast>
+                    </ToastContainer>
+                }
             </Container>
         </>
     );
