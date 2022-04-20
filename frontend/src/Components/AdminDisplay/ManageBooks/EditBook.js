@@ -28,7 +28,7 @@ const EditBook = () => {
         if (editedBook.name?.length > 3 && !editedBook.name || !editedBook.picture || !editedBook.author || !editedBook.description) {
             console.log(editedBook)
             setBook(editedBook);
-            axios.patch(`http://localhost:9000/book/${id}`, book)
+            return axios.patch(`http://localhost:9000/book/${id}`, book)
                 .then((res) => {
                     console.log(res)
                 })

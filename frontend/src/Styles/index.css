@@ -38,8 +38,8 @@
     float: right;
 }
 
-.align-self-flex-end {
-    align-self: flex-end;
+.pos-relative {
+    position: relative;
 }
 
 .book {
@@ -48,13 +48,15 @@
 }
 
 .book-image {
-    width: 250px;
+    max-width: 250px;
     display: block;
     padding-right: 1rem;
 }
 
-.display-flex {
-    display: flex;
+.book-button {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
 }
 
 .word-break {

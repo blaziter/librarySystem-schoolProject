@@ -20,10 +20,9 @@ const EditUser = () => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        if (!editedUser) {
-            if (!editedUser.name && editedUser.name.length() > 3 || !editedUser.role) {
-                setUser(editedUser);
-                axios.patch(`http://localhost:9000/user/${id}`, user)
+        if (editedUser) {
+            if (editedUser.username && editedUser.username.length > 3 && editedUser.role) {
+                return axios.patch(`http://localhost:9000/user/${id}`, editedUser)
                     .then((res) => {
                         console.log(res)
                     })
@@ -46,13 +45,13 @@ const EditUser = () => {
                         <Form onSubmit={handleUpdate}>
                             <Row>
                                 <Col>
-                                    <Form.Group className="mb-3" controlId="changeUserName" onChange={e => setEditedUser(e.target.value.trim() != "" ? { ...user, username: e.target.value } : { ...user })}>
+                                    <Form.Group className="mb-3" controlId="changeUserName" onChange={e => setEditedUser(e.target.value.trim() != "" ? { ...editedUser, username: e.target.value } : { ...editedUser })}>
                                         <Form.Label>New username: </Form.Label>
                                         <Form.Control placeholder="New username" />
                                     </Form.Group>
                                 </Col>
                                 <Col>
-                                    <Form.Group className="mb-3" controlId="changeRole" onChange={e => setEditedUser(e.target.value != "Open this select menu" ? { ...user, role: e.target.value } : { ...user })}>
+                                    <Form.Group className="mb-3" controlId="changeRole" onChange={e => setEditedUser(e.target.value != "Open this select menu" ? { ...editedUser, role: e.target.value } : { ...editedUser })}>
                                         <Form.Label>
                                             Role:
                                         </Form.Label>

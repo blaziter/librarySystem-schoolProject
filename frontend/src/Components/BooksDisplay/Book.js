@@ -20,7 +20,7 @@ const Book = () => {
         <>
             <Container>
                 <Card className="margin-1rem-auto">
-                    <Card.Body className="display-flex">
+                    <Card.Body className="pos-relative">
                         <Image className="float-left book-image" src="https://cdn.discordapp.com/avatars/333946844801400849/0bbbc1ed1032aede752f3150fc28118a.png?size=4096" />
                         <Card.Title>
                             {book.name}
@@ -29,7 +29,7 @@ const Book = () => {
                             {book.author}
                         </Card.Subtitle>
                         <Card.Text>{book.description}</Card.Text>
-                        <Button variant="success" className="float-right align-self-flex-end">Add to cart</Button>
+                        <Button variant="success" className="float-right book-button">Add to cart</Button>
                     </Card.Body>
                 </Card>
             </Container>

@@ -24,11 +24,10 @@ const BookShowcase = () => {
                     <Row xs={1} md={4} className="g-4">
                         {
                             books.map((book) => {
-                                console.log(book);
                                 return (
-                                    <LinkContainer to={`book/${book._id}`}>
+                                    <LinkContainer to={`book/${book._id}`} key={book._id}>
                                         <Col>
-                                            <Card className="word-break">
+                                            <Card className="word-break" >
                                                 <Card.Img src={book.picture} />
                                                 <Card.Body>
                                                     <Card.Title>{book.name}</Card.Title>
