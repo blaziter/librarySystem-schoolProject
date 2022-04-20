@@ -12,9 +12,10 @@ const AddBook = () => {
     });
     const [showToast, setShowToast] = useState(false);
 
-    const handlePost = async (e) => {
+    const handlePost = (e) => {
         e.preventDefault();
-        if (book.name.length() > 3 && !book.picture && !book.author && !book.description) {
+        if (book.name?.length > 3) setShowToast(true);
+        if (!book.name || !book.picture || !book.author || !book.description) {
             axios.post('http://localhost:9000/book/', book)
                 .then((res) => {
                     console.log(res)
@@ -77,7 +78,7 @@ const AddBook = () => {
                 </Card>
                 {
                     showToast && <ToastContainer className="p-3" position="bottom-end">
-                        <Toast delay={3000} autohide>
+                        <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
                             <Toast.Header>
                                 <strong className="me-auto">Error!</strong>
                             </Toast.Header>

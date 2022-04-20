@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Button, Card, Container, Col, Form, Row } from 'react-bootstrap';
+import { Button, Card, Container, Col, Form, Row, Toast, ToastContainer } from 'react-bootstrap';
 
 const EditBook = () => {
     const [book, setBook] = useState({});
@@ -24,7 +24,9 @@ const EditBook = () => {
 
     const handlePatch = (e) => {
         e.preventDefault();
-        if (editedBook.name.length() > 3 && !editedBook.picture && !editedBook.author && !editedBook.description) {
+        if (!editedBook) return setShowToast(true);
+        if (editedBook.name?.length > 3 && !editedBook.name || !editedBook.picture || !editedBook.author || !editedBook.description) {
+            console.log(editedBook)
             setBook(editedBook);
             axios.patch(`http://localhost:9000/book/${id}`, book)
                 .then((res) => {
@@ -96,7 +98,7 @@ const EditBook = () => {
                 </Card>
                 {
                     showToast && <ToastContainer className="p-3" position="bottom-end">
-                        <Toast delay={3000} autohide>
+                        <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
                             <Toast.Header>
                                 <strong className="me-auto">Error!</strong>
                             </Toast.Header>

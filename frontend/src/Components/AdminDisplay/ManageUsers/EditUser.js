@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button, Card, Container, Col, Form, Row } from 'react-bootstrap';
+import { Button, Card, Container, Col, Form, Row, Toast, ToastContainer } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
 const EditUser = () => {
@@ -20,15 +20,17 @@ const EditUser = () => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        if (editedUser.name.length() > 3 && !editedUser.role) {
-            setUser(editedUser);
-            axios.patch(`http://localhost:9000/user/${id}`, user)
-                .then((res) => {
-                    console.log(res)
-                })
-                .catch((err) => {
-                    console.log(err)
-                });
+        if (!editedUser) {
+            if (!editedUser.name && editedUser.name.length() > 3 || !editedUser.role) {
+                setUser(editedUser);
+                axios.patch(`http://localhost:9000/user/${id}`, user)
+                    .then((res) => {
+                        console.log(res)
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    });
+            }
         }
         setShowToast(true);
     }
@@ -68,7 +70,7 @@ const EditUser = () => {
                 </Card>
                 {
                     showToast && <ToastContainer className="p-3" position="bottom-end">
-                        <Toast delay={3000} autohide>
+                        <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
                             <Toast.Header>
                                 <strong className="me-auto">Error!</strong>
                             </Toast.Header>
