@@ -25,7 +25,7 @@ const EditBook = () => {
     const handlePatch = (e) => {
         e.preventDefault();
         if (!editedBook) return setShowToast(true);
-        if (editedBook.name?.length > 3 && !editedBook.name || !editedBook.picture || !editedBook.author || !editedBook.description) {
+        if (editedBook.name?.length > 3 && editedBook.name && editedBook.picture && editedBook.author && editedBook.description) {
             console.log(editedBook)
             setBook(editedBook);
             return axios.patch(`http://localhost:9000/book/${id}`, book)
@@ -42,7 +42,7 @@ const EditBook = () => {
     const handleDelete = (e) => {
         axios.delete(`http://localhost:9000/book/${id}`)
             .then((res) => {
-                navigate("/");
+                navigate("/admin/books");
             })
     }
 
