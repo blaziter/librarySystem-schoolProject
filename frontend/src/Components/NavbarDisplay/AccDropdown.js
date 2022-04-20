@@ -2,18 +2,20 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Dropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const AccDropdown = () => {
     const [loginState, setLoginState] = useState();
     const id = "";
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         axios.get(`http://localhost:9000/user/logout`)
             .then(res => {
-                console.log(res)
+                //navigate("/");
             })
             .catch(err => {
-                console.log(err)
+                //navigate("/");
             })
     }
 

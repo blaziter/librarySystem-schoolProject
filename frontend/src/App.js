@@ -21,7 +21,10 @@ const App = () => {
                     <Route path="user/:id" element={<EditUser />} />
                 </Route>
                 <Route path="book/:id" element={<Book />} />
-                <Route path="cart" element={<CartDisplay />} />
+                <Route path="cart" >
+                    <Route index element={<CartDisplay />} />
+                    <Route path="checkout" element={<CartDisplay />} />
+                </Route>
                 <Route path="user/:id">
                     <Route index element={<Account />} />
                     <Route path="update" element={<UpdateAccount />} />
