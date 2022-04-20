@@ -9,6 +9,10 @@ const NavbarDisplay = () => {
     const [content, setContent] = useState("");
     const [loginState, setLoginState] = useState(false);
 
+    useEffect(() => {
+
+    }, []);
+
     const searchHandler = async (e) => {
         e.preventDefault();
         console.log(content);
@@ -61,7 +65,7 @@ const NavbarDisplay = () => {
                             <Button variant="outline-success" type="submit">Search</Button>
                         </Form>
                         <Nav className="margin-left-05rem">
-                            { loginState ? <AccDropdown /> : <AccDropdown /> }
+                            { loginState ? <AccDropdown /> : <Auth /> }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

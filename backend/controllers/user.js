@@ -51,7 +51,7 @@ exports.addUser = async (req, res) => {
     try {
         const user = new User({
             username: req.body.username,
-            role: "customer",
+            role: "Customer",
         });
         const result = await user.save();
         if (result) {
