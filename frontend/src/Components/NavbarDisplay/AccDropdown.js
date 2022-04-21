@@ -1,38 +1,41 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Dropdown } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { DropdownButton, Dropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const AccDropdown = () => {
-    const [loginState, setLoginState] = useState();
-    const id = "";
+    const [username, setUsername] = useState();
+    const [role, setRole] = useState();
+    const [id, setId] = useState();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (localStorage.getItem("username")) setUsername(localStorage.getItem("username"))
+        if (localStorage.getItem("role")) setRole(localStorage.getItem("role"))
+        if (localStorage.getItem("token")) setId (localStorage.getItem("token"));
+    }, [])
+
     const handleLogout = () => {
-        axios.get(`http://localhost:9000/user/logout`)
-            .then(res => {
-                //navigate("/");
-            })
-            .catch(err => {
-                //navigate("/");
-            })
+        localStorage.removeItem("username")
+        localStorage.removeItem("token")
+        localStorage.removeItem("role")
+        navigate("/")
     }
 
     return (
         <>
-            <Dropdown>
-                <Dropdown.Toggle variant="outline-success" id="dropdown-basic">
-                    Dropdown Button
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                    <LinkContainer to={`user/${id}`}>
-                        <Dropdown.Item>Dashboard</Dropdown.Item>
+            <DropdownButton variant="outline-success" align={'end'} title={`Welcome ${username}!`}>
+                {
+                    role == 'Admin' && <LinkContainer to={`admin`}>
+                        <Dropdown.Item>Admin Dashboard</Dropdown.Item>
                     </LinkContainer>
-                    <Dropdown.Item onClick={handleLogout}>Log out</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
+                }
+                <LinkContainer to={`user/${id}`}>
+                    <Dropdown.Item>Dashboard</Dropdown.Item>
+                </LinkContainer>
+                <Dropdown.Item onClick={handleLogout}>Log out</Dropdown.Item>
+            </DropdownButton>
         </>
     )
 }

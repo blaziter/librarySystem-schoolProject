@@ -13,7 +13,7 @@ router.get(`/auth/google`,
 router.get(`/auth/google/callback`,
     passport.authenticate(`google`, { failureRedirect: `http://localhost:3000` }),
     function (req, res) {
-        res.redirect(`http://localhost:3000/data?${req.user._id}`);
+        res.redirect(`http://localhost:3000/data?token=${req.user._id}`);
     }
 );
 

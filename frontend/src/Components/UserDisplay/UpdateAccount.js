@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Card } from 'react-bootstrap';
+import { Button, Card, Container, Form } from 'react-bootstrap';
 
 const UpdateAccount = () => {
     const [user, setUser] = useState({});
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const handleUpdate = () => {
         axios.patch(`http://localhost:9000/user/${id}`, user)
@@ -24,16 +25,18 @@ const UpdateAccount = () => {
                 console.log(result);
                 //setUser(result);
             })
-
-    }, []);
+            if (!localStorage.getItem("token")) navigate("/")
+    }, [localStorage.getItem("token")]);
 
     return (
         <>
-            <Card>
-                <Card.Body>
-
-                </Card.Body>
-            </Card>
+            <Container>
+                <Card className="margin-1rem-auto">
+                    <Card.Body>
+                        <Button variant="success" className="float-right">Edit account</Button>
+                    </Card.Body>
+                </Card>
+            </Container>
         </>
     );
 }
