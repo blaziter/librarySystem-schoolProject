@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Card, Container, Col, Form, Row, Toast, ToastContainer } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const EditUser = () => {
     const [user, setUser] = useState([]);
     const [editedUser, setEditedUser] = useState([]);
     const [showToast, setShowToast] = useState(false);
+    const [success, setSuccess] = useState(false);
     const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`http://localhost:9000/user/${id}`)
@@ -24,7 +26,8 @@ const EditUser = () => {
             if (editedUser.username && editedUser.username.length > 3 && editedUser.role) {
                 return axios.patch(`http://localhost:9000/user/${id}`, editedUser)
                     .then((res) => {
-                        console.log(res)
+                        setSuccess(true);
+                        setTimeout(() => navigate("/"), 3000)
                     })
                     .catch((err) => {
                         console.log(err)
@@ -59,6 +62,7 @@ const EditUser = () => {
                                             <option>Open this select menu</option>
                                             <option value="Customer">Customer</option>
                                             <option value="Student">Student</option>
+                                            <option value="Admin">Admin</option>
                                         </Form.Select>
                                     </Form.Group>
                                 </Col>
@@ -74,6 +78,16 @@ const EditUser = () => {
                                 <strong className="me-auto">Error!</strong>
                             </Toast.Header>
                             <Toast.Body>User's username should be longer than 3 characters and not enough sufficient data entered!</Toast.Body>
+                        </Toast>
+                    </ToastContainer>
+                }
+                {
+                    success && <ToastContainer className="p-3" position="bottom-end">
+                        <Toast onClose={() => setSuccess(false)} show={success} delay={3000} autohide>
+                            <Toast.Header>
+                                <strong className="me-auto">Success!</strong>
+                            </Toast.Header>
+                            <Toast.Body>User has been edited!</Toast.Body>
                         </Toast>
                     </ToastContainer>
                 }

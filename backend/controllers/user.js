@@ -45,33 +45,6 @@ exports.getUser = async (req, res) => {
             error: error,
         });
     }
-};
-
-exports.addUser = async (req, res) => {
-    try {
-        const user = new User({
-            username: req.body.username,
-            role: "Customer",
-        });
-        const result = await user.save();
-        if (result) {
-            return res.status(201).json({
-                message: "User was created",
-                createdUser: {
-                    ...result.toObject(),
-                    payload: {
-                        type: "GET",
-                        url: `http://127.0.0.1:3000/user/${result._id}`,
-                    },
-                },
-            });
-        }
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            error: error
-        });
-    }
 }
 
 exports.patchUser = async (req, res) => {
@@ -94,4 +67,23 @@ exports.patchUser = async (req, res) => {
             error: error,
         });
     }
-};
+}
+
+exports.deleteUser = async (req, res) => {
+    try {
+        const result = await User.findByIdAndDelete(req.params.id);
+        if (result) {
+            return res.status(200).json({
+                msg: `User ${result.name}, id: ${result._id} was deleted`,
+            });
+        }
+        res.status(404).json({
+            msg: "User not found",
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            error: error,
+        });
+    }
+}

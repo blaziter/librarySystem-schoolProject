@@ -7,7 +7,6 @@ const findOrCreate = require("mongoose-findorcreate");
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true,
         unique: true,
         trim: true,
         minlength: 3
@@ -41,7 +40,12 @@ passport.use(new GoogleStrategy({
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
 },
     function (accessToken, refreshToken, profile, cb) {
-        User.findOrCreate({ googleId: profile.id, username: profile.id }, function (err, user) {
+        User.findOrCreate({ googleId: profile.id }, function (err, user) {
+            if (!user._doc.username && !user._doc.role) {
+                user.username = profile.id
+                user.role = 'Customer'
+                user.save()
+            }
             return cb(err, user);
         });
     }

@@ -5,7 +5,6 @@ const passport = require(`passport`);
 
 router.get('/', userController.getUsers);
 router.get('/:id', userController.getUser);
-router.post('/', userController.addUser);
 router.patch('/:id', userController.patchUser);
 //router.delete('/:id', userController.deleteUser);
 router.get(`/auth/google`,
@@ -14,7 +13,7 @@ router.get(`/auth/google`,
 router.get(`/auth/google/callback`,
     passport.authenticate(`google`, { failureRedirect: `http://localhost:3000` }),
     function (req, res) {
-        res.redirect(`http://localhost:3000/data?${req.user.googleId}`);
+        res.redirect(`http://localhost:3000/data?${req.user._id}`);
     }
 );
 
