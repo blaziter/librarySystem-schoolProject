@@ -19,7 +19,7 @@ const UsersMenu = () => {
     return (
         <>
             <Container>
-                <Card>
+                <Card className="margin-1rem-auto">
                     <Card.Body>
                         <Card.Title>
                             Users

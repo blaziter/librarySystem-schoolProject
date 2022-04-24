@@ -13,7 +13,7 @@ const AccDropdown = () => {
     useEffect(() => {
         if (localStorage.getItem("username")) setUsername(localStorage.getItem("username"))
         if (localStorage.getItem("role")) setRole(localStorage.getItem("role"))
-        if (localStorage.getItem("token")) setId (localStorage.getItem("token"));
+        if (localStorage.getItem("token")) setId(localStorage.getItem("token"))
     }, [])
 
     const handleLogout = () => {
