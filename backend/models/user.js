@@ -14,7 +14,11 @@ const userSchema = new mongoose.Schema({
     name: String,
     role: String,
     googleId: String,
-    secret: String
+    secret: String,
+    city: String,
+    state: String,
+    zip: String,
+    cartId: String,
 }, {
     timestamps: true,
 });

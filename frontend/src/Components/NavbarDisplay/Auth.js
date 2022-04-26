@@ -1,26 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap';
-import axios from 'axios';
 
 const Auth = () => {
-  const [loginState, setLoginState] = useState(false);
-
-  useEffect(() => {
-
-  });
-
-  /*
-  const loginHandler = () => {
-    axios.get(`http://localhost:9000/user/auth/google`)
-      .then(res => {
-        if (res.data) {
-          localStorage.setItem("user", JSON.stringify(res.data));
-        } 
-      });
-      onClick={loginHandler}
-  }
-  */
-
+  
   return (
     <Button href="http://localhost:9000/user/auth/google" variant="outline-success" type="submit">
       <div className="google-button__icon">

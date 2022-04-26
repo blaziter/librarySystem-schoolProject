@@ -11,18 +11,16 @@ const UpdateAccount = () => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        const form = e.currentTarget;
-        if (form.checkValidity() === false) {
-            e.preventDefault();
+        if (e.currentTarget.checkValidity() == false) {
+            console.log("y")
             e.stopPropagation();
         }
         setValidated(true);
 
-        console.log(user);
-
         axios.patch(`http://localhost:9000/user/${id}`, user)
             .then((res) => {
                 console.log(res)
+                console.log(user)
             })
             .catch((err) => {
                 console.log(err)
@@ -32,9 +30,7 @@ const UpdateAccount = () => {
     useEffect(() => {
         axios.get(`http://localhost:9000/user/${id}`)
             .then(res => {
-                const result = res.data;
-                console.log(result);
-                setUser(result);
+                setUser(res.data);
             })
         if (!localStorage.getItem("token")) navigate("/")
     }, [localStorage.getItem("token")]);
@@ -49,38 +45,26 @@ const UpdateAccount = () => {
                                 <Form.Group as={Col} controlId="validateUsername" onChange={e => setUser(validated ? { ...user, username: e.target.value } : { ...user })}>
                                     <Form.Label>Username</Form.Label>
                                     <Form.Control required type="text" placeholder="Username" />
-                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                 </Form.Group>
                             </Row>
                             <Row className="mb-3">
                                 <Form.Group as={Col} md="6" controlId="validateCity" onChange={e => setUser(validated ? { ...user, city: e.target.value } : { ...user })}>
                                     <Form.Label>City</Form.Label>
                                     <Form.Control type="text" placeholder="City" required />
-                                    <Form.Control.Feedback type="invalid">
-                                        Please provide a valid city.
-                                    </Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group as={Col} md="3" controlId="validateState" onChange={e => setUser(validated ? { ...user, state: e.target.value } : { ...user })}>
                                     <Form.Label>State</Form.Label>
                                     <Form.Control type="text" placeholder="State" required />
-                                    <Form.Control.Feedback type="invalid">
-                                        Please provide a valid state.
-                                    </Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group as={Col} md="3" controlId="validateZip" onChange={e => setUser(validated ? { ...user, zip: e.target.value } : { ...user })}>
                                     <Form.Label>Zip</Form.Label>
                                     <Form.Control type="text" placeholder="Zip" required />
-                                    <Form.Control.Feedback type="invalid">
-                                        Please provide a valid zip.
-                                    </Form.Control.Feedback>
                                 </Form.Group>
                             </Row>
                             <Form.Group className="mb-3">
                                 <Form.Check
                                     required
                                     label="Agree to terms and conditions"
-                                    feedback="You must agree before submitting."
-                                    feedbackType="invalid"
                                 />
                             </Form.Group>
                             <Button variant="success" type="submit" className="float-right">Edit account</Button>

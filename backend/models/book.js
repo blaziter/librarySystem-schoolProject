@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const path = require('path');
-const Img = require('./img');
 const fs = require('fs');
 
 const bookSchema = mongoose.Schema({

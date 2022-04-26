@@ -38,6 +38,7 @@ const NavbarDisplay = () => {
             axios.get(`http://localhost:9000/user/${token}`)
                 .then(res => {
                     localStorage.setItem("username", res.data.username)
+                    localStorage.setItem("cartId", res.data.cartId)
                     localStorage.setItem("role", res.data.role)
                     return setLoginState(true);
                 })
@@ -78,7 +79,7 @@ const NavbarDisplay = () => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <LinkContainer to="/cart">
+                            <LinkContainer to={`/cart/${localStorage.getItem('cartId')}`}>
                                 <Nav.Link>
                                     Cart
                                 </Nav.Link>
