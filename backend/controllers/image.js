@@ -25,6 +25,8 @@ const upload = multer({
     fileFilter: filter,
 });
 
+exports.getUploadForm = (req, res) => res.render("upload");
+
 exports.postUploadFile = [
     upload.single("avatar"),
     (req, res) => {
