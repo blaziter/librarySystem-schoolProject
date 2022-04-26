@@ -19,6 +19,16 @@ const BookShowcase = () => {
             })
     }, []);
 
+    const addItem = (id) => {
+        const cartId = localStorage.getItem("cartId");
+        if (cartId == null) return;
+
+        axios.patch(`http://localhost:9000/cart/${cartId}`, { $push: { books: id } })
+            .then(res => {
+                console.log(res);
+            })
+    }
+
     return (
         <>
             <Card className="margin-1rem">
@@ -35,7 +45,7 @@ const BookShowcase = () => {
                                                     <Card.Title>{book.name}</Card.Title>
                                                     <Card.Text>{book.description}</Card.Text>
                                                     <LinkContainer to="#">
-                                                        <Button variant="success" className="float-right">Add to cart</Button>
+                                                        <Button variant="success" className="float-right" onClick={addItem.bind(this, book._id)}>Add to cart</Button>
                                                     </LinkContainer>
                                                 </Card.Body>
                                             </Card>

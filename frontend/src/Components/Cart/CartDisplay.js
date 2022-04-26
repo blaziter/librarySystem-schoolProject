@@ -14,6 +14,7 @@ const CartDisplay = () => {
         axios.get(`http://localhost:9000/cart/${cartId}`)
             .then(res => {
                 setItems(res.data.books);
+                console.log(res.data.books)
             })
     }, []);
 
@@ -25,7 +26,29 @@ const CartDisplay = () => {
                         <Card.Title>Cart</Card.Title>
                         <Card>
                             <Card.Body>
-
+                                {
+                                    items.map((item) => {
+                                        axios.get(`http://localhost:9000/book/${item}`)
+                                            .then(res => {
+                                                return (
+                                                    <Card key={res.name} className="margin-top-1rem">
+                                                        <Card.Body>
+                                                            <Card.Title>
+                                                                {res.name}
+                                                            </Card.Title>
+                                                            <Card.Subtitle className="mb-2 text-muted">
+                                                                {res.author}
+                                                            </Card.Subtitle>
+                                                            <Card.Text>
+                                                                {res.description}
+                                                            </Card.Text>
+                                                            <Button variant="success" className="float-right">Remove</Button>
+                                                        </Card.Body>
+                                                    </Card>
+                                                );
+                                            })
+                                    })
+                                }
                             </Card.Body>
                         </Card>
                         <LinkContainer to="checkout">
