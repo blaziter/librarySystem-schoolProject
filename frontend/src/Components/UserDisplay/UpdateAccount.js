@@ -19,11 +19,8 @@ const UpdateAccount = () => {
 
         axios.patch(`http://localhost:9000/user/${id}`, user)
             .then((res) => {
-                console.log(res)
-                console.log(user)
             })
             .catch((err) => {
-                console.log(err)
             });
     }
 

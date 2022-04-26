@@ -25,7 +25,6 @@ const BookShowcase = () => {
 
         axios.patch(`http://localhost:9000/cart/${cartId}`, { $push: { books: id } })
             .then(res => {
-                console.log(res);
             })
     }
 

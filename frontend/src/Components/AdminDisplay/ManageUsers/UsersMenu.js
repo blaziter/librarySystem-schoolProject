@@ -10,7 +10,6 @@ const UsersMenu = () => {
         axios.get(`http://localhost:9000/user`)
             .then(res => {
                 const result = res.data.users;
-                console.log(result)
                 setUsers(result);
             })
 

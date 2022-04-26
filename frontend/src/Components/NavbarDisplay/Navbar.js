@@ -27,7 +27,6 @@ const NavbarDisplay = () => {
                     navigate("/")
                 })
                 .catch(err => {
-                    console.log(err)
                 })
         }
     }
@@ -43,7 +42,6 @@ const NavbarDisplay = () => {
                     return setLoginState(true);
                 })
                 .catch(err => {
-                    console.log(err)
                 })
         }
         setLoginState(false);

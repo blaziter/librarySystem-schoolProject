@@ -18,7 +18,6 @@ const CartDisplay = () => {
                 })
             })
             .catch(err => {
-                console.log(err)
             })
     }
 

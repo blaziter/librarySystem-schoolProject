@@ -11,7 +11,6 @@ const Book = () => {
         axios.get(`http://localhost:9000/book/${id}`)
             .then(res => {
                 const result = res.data;
-                console.log(result);
                 setBook(result);
             })
     }, []);

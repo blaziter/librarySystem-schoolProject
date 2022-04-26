@@ -17,10 +17,8 @@ const AddBook = () => {
         if (book.name?.length > 3 && book.name && book.picture && book.author && book.description) {
             return axios.post('http://localhost:9000/book/', book)
                 .then((res) => {
-                    console.log(res)
                 })
                 .catch((err) => {
-                    console.log(err)
                 });
         }
         setShowToast(true);
