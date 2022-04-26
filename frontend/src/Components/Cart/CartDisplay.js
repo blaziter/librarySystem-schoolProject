@@ -1,21 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Button, Card, Container } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const CartDisplay = () => {
-    const [items, setItems] = useState([]);
+    const [books, setBooks] = useState([]);
+    const { id } = useParams();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const cartId = localStorage.getItem("cartId");
-        if (!cartId) return navigate('/error');
-        axios.get(`http://localhost:9000/cart/${cartId}`)
+    const getIds = async () => {
+        axios.get(`http://localhost:9000/cart/${id}`)
             .then(res => {
-                setItems(res.data.books);
-                console.log(res.data.books)
+                res.data.books.forEach(async item => {
+                    const book = await axios.get(`http://localhost:9000/book/${item}`);
+                    setBooks(books => [...books, book.data]);
+                })
             })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    const handleRemove = (removedItem) => {
+        axios.patch(`http://localhost:9000/cart/${id}`, { $pull: { books: removedItem } })
+            .then(res => {
+                navigate('');
+            })
+    }
+
+    useEffect(() => {
+        if (id != localStorage.getItem("cartId")) return navigate('/error');
+        getIds();
     }, []);
 
     return (
@@ -27,26 +43,23 @@ const CartDisplay = () => {
                         <Card>
                             <Card.Body>
                                 {
-                                    items.map((item) => {
-                                        axios.get(`http://localhost:9000/book/${item}`)
-                                            .then(res => {
-                                                return (
-                                                    <Card key={res.name} className="margin-top-1rem">
-                                                        <Card.Body>
-                                                            <Card.Title>
-                                                                {res.name}
-                                                            </Card.Title>
-                                                            <Card.Subtitle className="mb-2 text-muted">
-                                                                {res.author}
-                                                            </Card.Subtitle>
-                                                            <Card.Text>
-                                                                {res.description}
-                                                            </Card.Text>
-                                                            <Button variant="success" className="float-right">Remove</Button>
-                                                        </Card.Body>
-                                                    </Card>
-                                                );
-                                            })
+                                    books.map(book => {
+                                        return (
+                                            <Card key={book._id} className="margin-top-1rem">
+                                                <Card.Body>
+                                                    <Card.Title>
+                                                        {book.name}
+                                                    </Card.Title>
+                                                    <Card.Subtitle className="mb-2 text-muted">
+                                                        {book.author}
+                                                    </Card.Subtitle>
+                                                    <Card.Text>
+                                                        {book.description}
+                                                    </Card.Text>
+                                                    <Button variant="success" className="float-right" onClick={handleRemove.bind(this, book._id)}>Remove</Button>
+                                                </Card.Body>
+                                            </Card>
+                                        );
                                     })
                                 }
                             </Card.Body>
