@@ -8,6 +8,7 @@ const app = express();
 const PORT = 9000;
 
 const bookRouter = require('./routes/book');
+const cartRouter = require('./routes/cart');
 const userRouter = require('./routes/user');
 
 app.use(session({
@@ -33,6 +34,7 @@ app.use(morgan("dev"));
 app.use(cors());
 
 app.use('/book', bookRouter);
+app.use('/cart', cartRouter);
 app.use('/user', userRouter);
 
 app.listen(PORT, () => `Server is running on port ${PORT}`);
