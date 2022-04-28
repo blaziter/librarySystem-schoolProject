@@ -11,7 +11,7 @@ const BooksMenu = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!localStorage.getItem("role") != "Admin") navigate('/');
+        if (!localStorage.getItem("role") == "Admin") navigate('/');
         if (page < 1 || !page || page > i) navigate('1');
         axios.get(`http://127.0.0.1:9000/book`)
             .then(res => {

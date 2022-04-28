@@ -11,7 +11,7 @@ const EditBook = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!localStorage.getItem("role") != "Admin") navigate('/');
+        if (!localStorage.getItem("role") == "Admin") navigate('/');
         axios.get(`http://127.0.0.1:9000/book/${id}`)
             .then(res => {
                 const result = res.data;

@@ -11,7 +11,7 @@ const UsersMenu = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!localStorage.getItem("role") != "Admin") navigate('/');
+        if (!localStorage.getItem("role") == "Admin") navigate('/');
         if (page < 1 || !page || page > i) navigate('1');
         axios.get(`http://localhost:9000/user`)
             .then(res => {
