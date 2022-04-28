@@ -19,6 +19,11 @@ const Checkout = () => {
         })
     }, []);
 
+    const showMessage = (books) => {
+        if (books.length < 1) return (`You had no books in your cart.`)
+        return (`Success, your books will be ready at store in 5 days!`)
+    }
+
     return (
         <>
             <Container>
@@ -28,7 +33,9 @@ const Checkout = () => {
                             Checkout
                         </Card.Title>
                         <Card.Text className="text-align-center">
-                            Success, your books will be ready at store in 5 days!
+                            {
+                                showMessage(books)
+                            }
                         </Card.Text>
                     </Card.Body>
                 </Card>

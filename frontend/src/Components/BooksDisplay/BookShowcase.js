@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button, Card, Col, Row, Toast, ToastContainer, Pagination } from 'react-bootstrap';
+import { Button, Card, Col, Row, Toast, ToastContainer, Pagination, ListGroup } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -45,7 +45,16 @@ const BookShowcase = () => {
                                             <Card className="word-break" >
                                                 <Card.Body>
                                                     <Card.Title>{book.name}</Card.Title>
-                                                    <Card.Text>{book.description}</Card.Text>
+                                                    <Card.Subtitle className="mb-2 text-muted">
+                                                        {book.author}
+                                                    </Card.Subtitle>
+                                                    <Card.Text >
+                                                        <ListGroup variant="flush">
+                                                            <ListGroup.Item>{book.description}</ListGroup.Item>
+                                                            <ListGroup.Item>{`Year of publication: ${book.year}`}</ListGroup.Item>
+                                                            <ListGroup.Item>{`Price: ${book.price}`}</ListGroup.Item>
+                                                        </ListGroup>
+                                                    </Card.Text>
                                                     <LinkContainer to="#">
                                                         <Button variant="success" className="float-right" onClick={addItem.bind(this, book._id, book.name)}>Add to cart</Button>
                                                     </LinkContainer>

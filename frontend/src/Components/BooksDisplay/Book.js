@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Button, Card, Container, Image } from 'react-bootstrap';
+import { Button, Card, Container, ListGroup, Toast, ToastContainer } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
 const Book = () => {
     const [book, setBook] = useState({});
+    const [showToast, setShowToast] = useState(false);
+    const [toastMessage, setToastMessage] = useState("");
+    const [errorToast, setErrorToast] = useState(false);
     const { id } = useParams();
+
+    const addItem = (id, title) => {
+        const cartId = localStorage.getItem("cartId");
+        if (cartId == null) return setErrorToast(true);
+        setShowToast(true)
+        setToastMessage(title)
+        axios.patch(`http://localhost:9000/cart/${cartId}`, { $push: { books: id } })
+            .then(res => {
+            })
+    }
 
     useEffect(() => {
         axios.get(`http://localhost:9000/book/${id}`)
@@ -26,11 +39,39 @@ const Book = () => {
                         <Card.Subtitle className="mb-2 text-muted">
                             {book.author}
                         </Card.Subtitle>
-                        <Card.Text>{book.description}</Card.Text>
-                        <Button variant="success" className="float-right">Add to cart</Button>
+                        <ListGroup variant="flush">
+                            <ListGroup.Item>{book.description}</ListGroup.Item>
+                            <ListGroup.Item>{`Year of publication: ${book.year}`}</ListGroup.Item>
+                            <ListGroup.Item>{`Price: ${book.price}`}</ListGroup.Item>
+                        </ListGroup>
+                        <Button variant="success" className="float-right" onClick={addItem.bind(this, book._id, book.name)}>Add to cart</Button>
                     </Card.Body>
                 </Card>
             </Container>
+            {
+                showToast && <ToastContainer className="p-3" position="bottom-end">
+                    <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
+                        <Toast.Header>
+                            <strong className="me-auto">Added {toastMessage}</strong>
+                        </Toast.Header>
+                        <Toast.Body>
+                            {toastMessage} successfully added into cart!
+                        </Toast.Body>
+                    </Toast>
+                </ToastContainer>
+            }
+            {
+                errorToast && <ToastContainer className="p-3" position="bottom-end">
+                    <Toast onClose={() => setErrorToast(false)} show={errorToast} delay={3000} autohide>
+                        <Toast.Header>
+                            <strong className="me-auto">You are unable to add an item!</strong>
+                        </Toast.Header>
+                        <Toast.Body>
+                            You have to have an account to be able to interact!
+                        </Toast.Body>
+                    </Toast>
+                </ToastContainer>
+            }
         </>
     );
 }

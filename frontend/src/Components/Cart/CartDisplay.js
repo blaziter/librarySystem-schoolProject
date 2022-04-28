@@ -42,6 +42,11 @@ const CartDisplay = () => {
                         <Card>
                             <Card.Body>
                                 {
+                                    books.length < 1
+                                    &&
+                                    <Card.Text className="text-align-center">You have no books in your cart.</Card.Text>
+                                }
+                                {
                                     books.map(book => {
                                         return (
                                             <Card key={book._id} className="margin-top-1rem">
