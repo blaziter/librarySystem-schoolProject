@@ -7,7 +7,6 @@ const axios = require(`axios`);
 router.get('/', userController.getUsers);
 router.get('/:id', userController.getUser);
 router.patch('/:id', userController.patchUser);
-//router.delete('/:id', userController.deleteUser);
 router.get(`/auth/google`,
     passport.authenticate(`google`, { scope: [`profile`] })
 );

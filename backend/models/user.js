@@ -19,6 +19,7 @@ const userSchema = new mongoose.Schema({
     state: String,
     zip: String,
     cartId: String,
+    country: String,
 }, {
     timestamps: true,
 });

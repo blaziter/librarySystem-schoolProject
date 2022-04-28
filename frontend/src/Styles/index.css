@@ -42,25 +42,9 @@
     float: right;
 }
 
-.pos-relative {
-    position: relative;
-}
-
 .book {
     width: 13rem;
     margin-bottom: 1rem;
-}
-
-.book-image {
-    max-width: 250px;
-    display: block;
-    padding-right: 1rem;
-}
-
-.book-button {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
 }
 
 .word-break {

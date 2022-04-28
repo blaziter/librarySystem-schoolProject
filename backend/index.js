@@ -32,7 +32,6 @@ mongoose.connect(
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
-
 app.use('/book', bookRouter);
 app.use('/cart', cartRouter);
 app.use('/user', userRouter);

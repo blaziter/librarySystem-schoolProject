@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Button, Card, Container, Col, Form, Row } from 'react-bootstrap';
 
 const UpdateAccount = () => {
-    const [validated, setValidated] = useState(false);
     const [user, setUser] = useState({});
     const { id } = useParams();
     const navigate = useNavigate();
@@ -41,16 +40,22 @@ const UpdateAccount = () => {
                                     <Form.Control required type="text" placeholder="Username" />
                                 </Form.Group>
                             </Row>
-                            <Row className="mb-3">
+                            <Row className="mb-2">
+                                <Form.Group as={Col} md="6" controlId="validateCountry" onChange={e => setUser(e.target.value != null ? { ...user, country: e.target.value } : { ...user })}>
+                                    <Form.Label>Country</Form.Label>
+                                    <Form.Control type="text" placeholder="Country" required />
+                                </Form.Group>
                                 <Form.Group as={Col} md="6" controlId="validateCity" onChange={e => setUser(e.target.value != null ? { ...user, city: e.target.value } : { ...user })}>
                                     <Form.Label>City</Form.Label>
                                     <Form.Control type="text" placeholder="City" required />
                                 </Form.Group>
-                                <Form.Group as={Col} md="3" controlId="validateState" onChange={e => setUser(e.target.value != null ? { ...user, state: e.target.value } : { ...user })}>
+                            </Row>
+                            <Row className="mb-2">
+                                <Form.Group as={Col} md="6" controlId="validateState" onChange={e => setUser(e.target.value != null ? { ...user, state: e.target.value } : { ...user })}>
                                     <Form.Label>State</Form.Label>
                                     <Form.Control type="text" placeholder="State" required />
                                 </Form.Group>
-                                <Form.Group as={Col} md="3" controlId="validateZip" onChange={e => setUser(e.target.value != null ? { ...user, zip: e.target.value } : { ...user })}>
+                                <Form.Group as={Col} md="6" controlId="validateZip" onChange={e => setUser(e.target.value != null ? { ...user, zip: e.target.value } : { ...user })}>
                                     <Form.Label>Zip</Form.Label>
                                     <Form.Control type="text" placeholder="Zip" required />
                                 </Form.Group>

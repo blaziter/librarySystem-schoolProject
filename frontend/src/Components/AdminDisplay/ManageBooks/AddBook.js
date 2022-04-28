@@ -11,10 +11,12 @@ const AddBook = () => {
         year: 0
     });
     const [showToast, setShowToast] = useState(false);
+    const formData = new FormData();
+    let file = "";
 
     const handlePost = (e) => {
         e.preventDefault();
-        if (book.name?.length > 3 && book.name && book.picture && book.author && book.description) {
+        if (book.name?.length > 3 && book.name && book.author && book.description) {
             return axios.post('http://localhost:9000/book/', book)
                 .then((res) => {
                 })
@@ -38,12 +40,6 @@ const AddBook = () => {
                                     <Form.Group className="mb-3" controlId="book.name" onChange={e => setBook({ ...book, name: e.target.value })}>
                                         <Form.Label>Book's name: </Form.Label>
                                         <Form.Control required placeholder="Book's name" />
-                                    </Form.Group>
-                                </Col>
-                                <Col>
-                                    <Form.Group className="mb-3" controlId="formFile" onChange={e => setBook({ ...book, picture: e.target.value })}>
-                                        <Form.Label>Book cover</Form.Label>
-                                        <Form.Control required type="file" />
                                     </Form.Group>
                                 </Col>
                             </Row>

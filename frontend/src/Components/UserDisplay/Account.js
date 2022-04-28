@@ -1,12 +1,23 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Card, Container } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import axios from 'axios';
 
 const Account = () => {
     const navigate = useNavigate();
+    const [user, setUser] = useState();
+    const { id } = useParams();
+
+    const getUser = () => {
+        axios.get(`http://localhost:9000/user/${id}`)
+        .then(res => {
+            setUser(res.data);
+        })
+    }
 
     useEffect(() => {
+        getUser()
         if(!localStorage.getItem("token")) navigate("/")
     }, [localStorage.getItem("token")])
 
@@ -25,6 +36,11 @@ const Account = () => {
                                 localStorage.getItem("role")
                             }
                         </Card.Subtitle>
+                        <Card.Text>
+                            {
+                                user && `Address: ${user.country}, ${user.state}, ${user.city} ${user.zip}`
+                            }
+                        </Card.Text>
                         <LinkContainer to="update">
                             <Button variant="success" className="float-right">Edit account</Button>
                         </LinkContainer>

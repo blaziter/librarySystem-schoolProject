@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Card, Container } from 'react-bootstrap';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Card, Container } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Checkout = () => {
@@ -8,12 +8,13 @@ const Checkout = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (!localStorage.getItem('token')) navigate('/');
         axios.get(`http://localhost:9000/cart/${localStorage.getItem('cartId')}`)
         .then(res => {
             setBooks(res.data.books);
-            if (books != null) books.map(book => {
-                console.log(book);
-                axios.patch(`http://localhost:9000/cart/${localStorage.getItem('cartId')}`, { $pull: { books: book } })
+            if (books != null) axios.patch(`http://localhost:9000/cart/${localStorage.getItem('cartId')}`, { $set: { books: [] } })
+            .then(res => {
+                console.log(res)
             })
         })
     }, []);

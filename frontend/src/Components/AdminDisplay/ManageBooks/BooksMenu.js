@@ -33,9 +33,6 @@ const BooksMenu = () => {
                                 return (
                                     <Card key={book._id} className="margin-top-1rem">
                                         <Card.Body>
-                                            <Card.Img>
-                                                
-                                            </Card.Img>
                                             <Card.Title>
                                                 {book.name}
                                             </Card.Title>
