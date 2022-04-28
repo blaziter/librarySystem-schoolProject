@@ -24,7 +24,7 @@ const CartDisplay = () => {
     const handleRemove = (removedItem) => {
         axios.patch(`http://localhost:9000/cart/${id}`, { $pull: { books: removedItem } })
             .then(res => {
-                navigate('');
+                window.location.reload();
             })
     }
 
