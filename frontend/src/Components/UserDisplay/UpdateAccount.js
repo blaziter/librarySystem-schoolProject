@@ -11,14 +11,11 @@ const UpdateAccount = () => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        if (e.currentTarget.checkValidity() == false) {
-            console.log("y")
-            e.stopPropagation();
-        }
-        setValidated(true);
 
         axios.patch(`http://localhost:9000/user/${id}`, user)
             .then((res) => {
+                console.log(res)
+                console.log(user)
             })
             .catch((err) => {
             });
@@ -37,23 +34,23 @@ const UpdateAccount = () => {
             <Container>
                 <Card className="margin-1rem-auto">
                     <Card.Body>
-                        <Form noValidate validated={validated} onSubmit={handleUpdate}>
+                        <Form onSubmit={handleUpdate}>
                             <Row className="mb-1">
-                                <Form.Group as={Col} controlId="validateUsername" onChange={e => setUser(validated ? { ...user, username: e.target.value } : { ...user })}>
+                                <Form.Group as={Col} controlId="validateUsername" onChange={e => setUser(e.target.value != null ? { ...user, username: e.target.value } : { ...user })}>
                                     <Form.Label>Username</Form.Label>
                                     <Form.Control required type="text" placeholder="Username" />
                                 </Form.Group>
                             </Row>
                             <Row className="mb-3">
-                                <Form.Group as={Col} md="6" controlId="validateCity" onChange={e => setUser(validated ? { ...user, city: e.target.value } : { ...user })}>
+                                <Form.Group as={Col} md="6" controlId="validateCity" onChange={e => setUser(e.target.value != null ? { ...user, city: e.target.value } : { ...user })}>
                                     <Form.Label>City</Form.Label>
                                     <Form.Control type="text" placeholder="City" required />
                                 </Form.Group>
-                                <Form.Group as={Col} md="3" controlId="validateState" onChange={e => setUser(validated ? { ...user, state: e.target.value } : { ...user })}>
+                                <Form.Group as={Col} md="3" controlId="validateState" onChange={e => setUser(e.target.value != null ? { ...user, state: e.target.value } : { ...user })}>
                                     <Form.Label>State</Form.Label>
                                     <Form.Control type="text" placeholder="State" required />
                                 </Form.Group>
-                                <Form.Group as={Col} md="3" controlId="validateZip" onChange={e => setUser(validated ? { ...user, zip: e.target.value } : { ...user })}>
+                                <Form.Group as={Col} md="3" controlId="validateZip" onChange={e => setUser(e.target.value != null ? { ...user, zip: e.target.value } : { ...user })}>
                                     <Form.Label>Zip</Form.Label>
                                     <Form.Control type="text" placeholder="Zip" required />
                                 </Form.Group>

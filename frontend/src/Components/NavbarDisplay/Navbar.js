@@ -47,24 +47,6 @@ const NavbarDisplay = () => {
         setLoginState(false);
     }
 
-    const searchHandler = async (e) => {
-        e.preventDefault();
-        console.log(content);
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(content)
-        }
-
-        await fetch('/', options)
-            .then(response => response.json())
-            .then(data => setContent(content))
-    }
-
     return (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -83,17 +65,7 @@ const NavbarDisplay = () => {
                                 </Nav.Link>
                             </LinkContainer>
                         </Nav>
-                        <Form className="d-flex" onSubmit={searchHandler}>
-                            <FormControl
-                                type="search"
-                                placeholder="Search"
-                                className="me-2"
-                                aria-label="Search"
-                                onChange={e => setContent(e.target.value)}
-                            />
-                            <Button variant="outline-success" type="submit">Search</Button>
-                        </Form>
-                        <Nav className="margin-left-05rem">
+                        <Nav>
                             {loginState ? <AccDropdown /> : <Auth />}
                         </Nav>
                     </Navbar.Collapse>

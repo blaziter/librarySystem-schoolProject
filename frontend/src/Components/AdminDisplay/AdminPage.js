@@ -3,14 +3,18 @@ import { Button, Card, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 const AdminPage = () => {
+    const name = localStorage.getItem("username")
 
     return (
         <Container>
             <Card className="margin-1rem-auto">
                 <Card.Body>
                     <Card.Title>
-                        Admin Page
+                        Admin Dashboard
                     </Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">
+                            Welcome {name}!
+                        </Card.Subtitle>
                     <LinkContainer to={`/admin/book/add`}>
                         <Button variant="success" className="float-right margin-left-05rem">Add a book</Button>
                     </LinkContainer>

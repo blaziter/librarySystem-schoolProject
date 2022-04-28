@@ -1,7 +1,8 @@
-export { default as CartDisplay } from '../Components/Cart/CartDisplay';
+export { default as Checkout } from '../Components/Cart/Checkout';
 export { default as Book } from '../Components/BooksDisplay/Book';
 export { default as ErrorPage } from '../Components/Error/ErrorPage';
 export { default as Account } from '../Components/UserDisplay/Account';
+export { default as CartDisplay } from '../Components/Cart/CartDisplay';
 export { default as AdminPage } from '../Components/AdminDisplay/AdminPage';
 export { default as NavbarDisplay } from '../Components/NavbarDisplay/Navbar';
 export { default as BookDisplay } from '../Components/BooksDisplay/BookDisplay';

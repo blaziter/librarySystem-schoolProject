@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button, Card, Col, Row, Pagination } from 'react-bootstrap';
+import { Button, Card, Col, Row, Toast, ToastContainer, Pagination } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const BookShowcase = () => {
     const [books, setBooks] = useState([]);
+    const [showToast, setShowToast] = useState(false);
+    const [toastMessage, setToastMessage] = useState("");
     let i = 1;
     const { page } = useParams();
     const navigate = useNavigate();
@@ -19,10 +21,11 @@ const BookShowcase = () => {
             })
     }, []);
 
-    const addItem = (id) => {
+    const addItem = (id, title) => {
         const cartId = localStorage.getItem("cartId");
         if (cartId == null) return;
-
+        setShowToast(true)
+        setToastMessage(title)
         axios.patch(`http://localhost:9000/cart/${cartId}`, { $push: { books: id } })
             .then(res => {
             })
@@ -44,7 +47,7 @@ const BookShowcase = () => {
                                                     <Card.Title>{book.name}</Card.Title>
                                                     <Card.Text>{book.description}</Card.Text>
                                                     <LinkContainer to="#">
-                                                        <Button variant="success" className="float-right" onClick={addItem.bind(this, book._id)}>Add to cart</Button>
+                                                        <Button variant="success" className="float-right" onClick={addItem.bind(this, book._id, book.name)}>Add to cart</Button>
                                                     </LinkContainer>
                                                 </Card.Body>
                                             </Card>
@@ -97,6 +100,18 @@ const BookShowcase = () => {
                     }
                 </Card.Body>
             </Card>
+            {
+                showToast && <ToastContainer className="p-3" position="bottom-end">
+                    <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
+                        <Toast.Header>
+                            <strong className="me-auto">Added {toastMessage}</strong>
+                        </Toast.Header>
+                        <Toast.Body>
+                            {toastMessage} successfully added into cart!
+                        </Toast.Body>
+                    </Toast>
+                </ToastContainer>
+            }
         </>
     );
 }

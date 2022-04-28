@@ -50,7 +50,7 @@ const EditUser = () => {
                                 <Col>
                                     <Form.Group className="mb-3" controlId="changeUserName" onChange={e => setEditedUser(e.target.value.trim() != "" ? { ...editedUser, username: e.target.value } : { ...editedUser })}>
                                         <Form.Label>New username: </Form.Label>
-                                        <Form.Control placeholder="New username" />
+                                        <Form.Control required placeholder="New username" />
                                     </Form.Group>
                                 </Col>
                                 <Col>

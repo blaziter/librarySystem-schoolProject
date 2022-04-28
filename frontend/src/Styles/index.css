@@ -18,6 +18,10 @@
     margin: auto;
 }
 
+.text-align-center {
+    text-align: center;
+}
+
 .margin-1rem-auto {
     margin: 1rem auto;
 }
