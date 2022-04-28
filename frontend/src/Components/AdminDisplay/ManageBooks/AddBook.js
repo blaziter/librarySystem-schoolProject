@@ -27,7 +27,7 @@ const AddBook = () => {
     }
 
     useEffect(() => {
-        if (!localStorage.getItem("role") !== "admin") navigate('/');
+        if (!localStorage.getItem("role") != "admin") navigate('/');
     }, []);
 
     return (

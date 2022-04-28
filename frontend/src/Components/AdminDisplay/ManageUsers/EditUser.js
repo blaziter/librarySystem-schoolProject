@@ -12,7 +12,7 @@ const EditUser = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!localStorage.getItem("role") !== "admin") navigate('/');
+        if (!localStorage.getItem("role") != "Admin") navigate('/');
         axios.get(`http://localhost:9000/user/${id}`)
             .then(res => {
                 const result = res.data;
