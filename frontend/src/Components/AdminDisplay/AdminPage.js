@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Card, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const AdminPage = () => {
     const name = localStorage.getItem("username")
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!localStorage.getItem("role") !== "admin") navigate('/');
+    }, []);
 
     return (
         <Container>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, Card, Container, Col, Form, Row, Toast, ToastContainer } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -11,8 +12,6 @@ const AddBook = () => {
         year: 0
     });
     const [showToast, setShowToast] = useState(false);
-    const formData = new FormData();
-    let file = "";
 
     const handlePost = (e) => {
         e.preventDefault();
@@ -25,6 +24,10 @@ const AddBook = () => {
         }
         setShowToast(true);
     }
+
+    useEffect(() => {
+        if (!localStorage.getItem("role") !== "admin") navigate('/');
+    }, []);
 
     return (
         <>
