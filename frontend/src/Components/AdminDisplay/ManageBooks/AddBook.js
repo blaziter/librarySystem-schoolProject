@@ -12,13 +12,18 @@ const AddBook = () => {
         year: 0
     });
     const [showToast, setShowToast] = useState(false);
+    const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
 
     const handlePost = (e) => {
         e.preventDefault();
-        if (book.name?.length > 3 && book.name && book.author && book.description) {
+        if (book.name?.length > 2 && book.author && book.description) {
             return axios.post('http://localhost:9000/book/', book)
                 .then((res) => {
+                    setSuccess(true);
+                    /*setTimeout(() => {
+                        window.location.reload()
+                    }, 3000)*/
                 })
                 .catch((err) => {
                 });
@@ -74,12 +79,26 @@ const AddBook = () => {
                     </Card.Body>
                 </Card>
                 {
-                    showToast && <ToastContainer className="p-3" position="bottom-end">
+                    showToast
+                    &&
+                    <ToastContainer className="p-3" position="bottom-end">
                         <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
                             <Toast.Header>
                                 <strong className="me-auto">Error!</strong>
                             </Toast.Header>
-                            <Toast.Body>Book's name should be longer than 3 characters and not enough sufficient data entered!</Toast.Body>
+                            <Toast.Body>Book's name should be longer than 2 characters</Toast.Body>
+                        </Toast>
+                    </ToastContainer>
+                }
+                {
+                    success
+                    &&
+                    <ToastContainer className="p-3" position="bottom-end">
+                        <Toast onClose={() => success(false)} show={success} delay={3000} autohide>
+                            <Toast.Header>
+                                <strong className="me-auto">{book.name} was added to library</strong>
+                            </Toast.Header>
+                            <Toast.Body>Successfully added {book.name}</Toast.Body>
                         </Toast>
                     </ToastContainer>
                 }

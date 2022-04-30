@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Button, Card, Container } from 'react-bootstrap';
+import { Button, Card, Container, ListGroup } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -58,7 +58,19 @@ const CartDisplay = () => {
                                                         {book.author}
                                                     </Card.Subtitle>
                                                     <Card.Text>
-                                                        {book.description}
+                                                        <ListGroup variant="flush">
+                                                            <ListGroup.Item>
+                                                                <div className="fw-bold">Short description:</div>
+                                                                {`${book.description.split('.')[0]}.`}
+                                                            </ListGroup.Item>
+                                                            <ListGroup.Item>
+                                                                <div className="fw-bold">Year of publication:</div>
+                                                                {book.year}
+                                                            </ListGroup.Item>
+                                                            <ListGroup.Item>
+                                                                <div className="fw-bold">Price:</div>
+                                                                {book.price}</ListGroup.Item>
+                                                        </ListGroup>
                                                     </Card.Text>
                                                     <Button variant="success" className="float-right" onClick={handleRemove.bind(this, book._id)}>Remove</Button>
                                                 </Card.Body>

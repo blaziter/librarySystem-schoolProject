@@ -7,6 +7,7 @@ const EditBook = () => {
     const [book, setBook] = useState({});
     const [editedBook, setEditedBook] = useState({});
     const [showToast, setShowToast] = useState(false);
+    const [success, setSuccess] = useState(false);
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -31,10 +32,10 @@ const EditBook = () => {
             setBook(editedBook);
             return axios.patch(`http://localhost:9000/book/${id}`, book)
                 .then((res) => {
-                    console.log(res)
+                    setSuccess(true);
+                    setTimeout(() => navigate('/'), 3000)
                 })
                 .catch((err) => {
-                    console.log(err)
                 });
         }
         setShowToast(true);
@@ -92,12 +93,26 @@ const EditBook = () => {
                     </Card.Body>
                 </Card>
                 {
-                    showToast && <ToastContainer className="p-3" position="bottom-end">
+                    showToast
+                    &&
+                    <ToastContainer className="p-3" position="bottom-end">
                         <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
                             <Toast.Header>
                                 <strong className="me-auto">Error!</strong>
                             </Toast.Header>
                             <Toast.Body>Book's name should be longer than 3 characters and not enough sufficient data entered!</Toast.Body>
+                        </Toast>
+                    </ToastContainer>
+                }
+                {
+                    success
+                    &&
+                    <ToastContainer className="p-3" position="bottom-end">
+                        <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
+                            <Toast.Header>
+                                <strong className="me-auto">{book.name} updated!</strong>
+                            </Toast.Header>
+                            <Toast.Body>{book.name} was successfully updated!</Toast.Body>
                         </Toast>
                     </ToastContainer>
                 }

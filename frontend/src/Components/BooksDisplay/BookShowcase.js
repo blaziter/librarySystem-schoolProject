@@ -50,9 +50,17 @@ const BookShowcase = () => {
                                                     </Card.Subtitle>
                                                     <Card.Text >
                                                         <ListGroup variant="flush">
-                                                            <ListGroup.Item>{book.description}</ListGroup.Item>
-                                                            <ListGroup.Item>{`Year of publication: ${book.year}`}</ListGroup.Item>
-                                                            <ListGroup.Item>{`Price: ${book.price}`}</ListGroup.Item>
+                                                            <ListGroup.Item>
+                                                                <div className="fw-bold">Short description:</div>
+                                                                {`${book.description.split('.')[0]}.`}
+                                                            </ListGroup.Item>
+                                                            <ListGroup.Item>
+                                                            <div className="fw-bold">Year of publication:</div>
+                                                                {book.year}
+                                                                </ListGroup.Item>
+                                                            <ListGroup.Item>
+                                                            <div className="fw-bold">Price:</div>
+                                                                {book.price}</ListGroup.Item>
                                                         </ListGroup>
                                                     </Card.Text>
                                                     <LinkContainer to="#">

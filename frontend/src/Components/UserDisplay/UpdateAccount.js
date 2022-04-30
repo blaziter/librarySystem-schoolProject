@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Button, Card, Container, Col, Form, Row } from 'react-bootstrap';
+import { Button, Card, Container, Col, Form, Row, Toast, ToastContainer } from 'react-bootstrap';
 
 const UpdateAccount = () => {
     const [user, setUser] = useState({});
+    const [showToast, setShowToast] = useState(false);
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -13,8 +14,8 @@ const UpdateAccount = () => {
 
         axios.patch(`http://localhost:9000/user/${id}`, user)
             .then((res) => {
-                console.log(res)
-                console.log(user)
+                setShowToast(true);
+                setTimeout(() => navigate('/'), 3000)
             })
             .catch((err) => {
             });
@@ -71,6 +72,18 @@ const UpdateAccount = () => {
                     </Card.Body>
                 </Card>
             </Container>
+            {
+                showToast
+                &&
+                <ToastContainer className="p-3" position="bottom-end">
+                    <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
+                        <Toast.Header>
+                            <strong className="me-auto">Update successful!</strong>
+                        </Toast.Header>
+                        <Toast.Body>Successfully updated your info!</Toast.Body>
+                    </Toast>
+                </ToastContainer>
+            }
         </>
     );
 }

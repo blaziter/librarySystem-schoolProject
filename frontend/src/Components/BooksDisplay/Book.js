@@ -40,9 +40,17 @@ const Book = () => {
                             {book.author}
                         </Card.Subtitle>
                         <ListGroup variant="flush">
-                            <ListGroup.Item>{book.description}</ListGroup.Item>
-                            <ListGroup.Item>{`Year of publication: ${book.year}`}</ListGroup.Item>
-                            <ListGroup.Item>{`Price: ${book.price}`}</ListGroup.Item>
+                            <ListGroup.Item>
+                                <div className="fw-bold">Description:</div>
+                                {book.description}
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <div className="fw-bold">Year of publication:</div>
+                                {book.year}
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <div className="fw-bold">Price:</div>
+                                {book.price}</ListGroup.Item>
                         </ListGroup>
                         <Button variant="success" className="float-right" onClick={addItem.bind(this, book._id, book.name)}>Add to cart</Button>
                     </Card.Body>
