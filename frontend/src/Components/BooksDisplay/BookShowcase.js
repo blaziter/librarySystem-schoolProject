@@ -6,9 +6,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const BookShowcase = () => {
     const [books, setBooks] = useState([]);
+    const [cart, setCart] = useState([]);
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState("");
     const [errorToast, setErrorToast] = useState(false);
+    const [cartToast, setCartToast] = useState(false);
     let i = 1;
     const { page } = useParams();
     const navigate = useNavigate();
@@ -19,12 +21,22 @@ const BookShowcase = () => {
             .then(res => {
                 const result = res.data.books;
                 setBooks(result);
-            })
+            });
     }, []);
+
+    useEffect(() => {
+        const cartId = localStorage.getItem("cartId");
+        if (cartId == null) return;
+        axios.get(`http://localhost:9000/cart/${cartId}`)
+            .then(res => {
+                setCart(res.data.books)
+            })
+    }, [])
 
     const addItem = (id, title) => {
         const cartId = localStorage.getItem("cartId");
         if (cartId == null) return setErrorToast(true);
+        if (cart.includes(id)) return setCartToast(true);
         setShowToast(true)
         setToastMessage(title)
         axios.patch(`http://localhost:9000/cart/${cartId}`, { $push: { books: id } })
@@ -42,7 +54,7 @@ const BookShowcase = () => {
                                 return (
                                     <LinkContainer to={`/book/${book._id}`} key={book._id}>
                                         <Col>
-                                            <Card className="word-break" >
+                                            <Card className="word-break">
                                                 <Card.Body>
                                                     <Card.Title>{book.name}</Card.Title>
                                                     <Card.Subtitle className="mb-2 text-muted">
@@ -55,12 +67,13 @@ const BookShowcase = () => {
                                                                 {`${book.description.split('.')[0]}.`}
                                                             </ListGroup.Item>
                                                             <ListGroup.Item>
-                                                            <div className="fw-bold">Year of publication:</div>
+                                                                <div className="fw-bold">Year of publication:</div>
                                                                 {book.year}
-                                                                </ListGroup.Item>
+                                                            </ListGroup.Item>
                                                             <ListGroup.Item>
-                                                            <div className="fw-bold">Price:</div>
-                                                                {book.price}</ListGroup.Item>
+                                                                <div className="fw-bold">Price:</div>
+                                                                {book.price}
+                                                            </ListGroup.Item>
                                                         </ListGroup>
                                                     </Card.Text>
                                                     <LinkContainer to="#">
@@ -117,8 +130,9 @@ const BookShowcase = () => {
                     }
                 </Card.Body>
             </Card>
-            {
-                showToast && <ToastContainer className="p-3" position="bottom-end">
+            <ToastContainer className="p-3" position="bottom-end">
+                {
+                    showToast &&
                     <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
                         <Toast.Header>
                             <strong className="me-auto">Added {toastMessage}</strong>
@@ -127,20 +141,30 @@ const BookShowcase = () => {
                             {toastMessage} successfully added into cart!
                         </Toast.Body>
                     </Toast>
-                </ToastContainer>
-            }
-            {
-                errorToast && <ToastContainer className="p-3" position="bottom-end">
+                }
+                {
+                    errorToast &&
                     <Toast onClose={() => setErrorToast(false)} show={errorToast} delay={3000} autohide>
                         <Toast.Header>
-                            <strong className="me-auto">You are unable to add an item!</strong>
+                            <strong className="me-auto">You are unable to add a book!</strong>
                         </Toast.Header>
                         <Toast.Body>
                             You have to have an account to be able to interact!
                         </Toast.Body>
                     </Toast>
-                </ToastContainer>
-            }
+                }
+                {
+                    cartToast &&
+                    <Toast onClose={() => setCartToast(false)} show={cartToast} delay={3000} autohide>
+                        <Toast.Header>
+                            <strong className="me-auto">Book already in cart!</strong>
+                        </Toast.Header>
+                        <Toast.Body>
+                            You already have this book in your cart!
+                        </Toast.Body>
+                    </Toast>
+                }
+            </ToastContainer>
         </>
     );
 }
