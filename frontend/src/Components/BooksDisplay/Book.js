@@ -5,7 +5,9 @@ import { useParams } from 'react-router-dom';
 
 const Book = () => {
     const [book, setBook] = useState({});
+    const [cart, setCart] = useState([]);
     const [showToast, setShowToast] = useState(false);
+    const [cartToast, setCartToast] = useState(false);
     const [toastMessage, setToastMessage] = useState("");
     const [errorToast, setErrorToast] = useState(false);
     const { id } = useParams();
@@ -13,6 +15,7 @@ const Book = () => {
     const addItem = (id, title) => {
         const cartId = localStorage.getItem("cartId");
         if (cartId == null) return setErrorToast(true);
+        if (cart.includes(id)) return setCartToast(true);
         setShowToast(true)
         setToastMessage(title)
         axios.patch(`http://localhost:9000/cart/${cartId}`, { $push: { books: id } })
@@ -27,6 +30,15 @@ const Book = () => {
                 setBook(result);
             })
     }, []);
+
+    useEffect(() => {
+        const cartId = localStorage.getItem("cartId");
+        if (cartId == null) return;
+        axios.get(`http://localhost:9000/cart/${cartId}`)
+            .then(res => {
+                setCart(res.data.books)
+            })
+    }, [book])
 
     return (
         <>
@@ -56,8 +68,9 @@ const Book = () => {
                     </Card.Body>
                 </Card>
             </Container>
-            {
-                showToast && <ToastContainer className="p-3" position="bottom-end">
+            <ToastContainer className="p-3" position="bottom-end">
+                {
+                    showToast &&
                     <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
                         <Toast.Header>
                             <strong className="me-auto">Added {toastMessage}</strong>
@@ -66,20 +79,30 @@ const Book = () => {
                             {toastMessage} successfully added into cart!
                         </Toast.Body>
                     </Toast>
-                </ToastContainer>
-            }
-            {
-                errorToast && <ToastContainer className="p-3" position="bottom-end">
+                }
+                {
+                    errorToast &&
                     <Toast onClose={() => setErrorToast(false)} show={errorToast} delay={3000} autohide>
                         <Toast.Header>
-                            <strong className="me-auto">You are unable to add an item!</strong>
+                            <strong className="me-auto">You are unable to add a book!</strong>
                         </Toast.Header>
                         <Toast.Body>
                             You have to have an account to be able to interact!
                         </Toast.Body>
                     </Toast>
-                </ToastContainer>
-            }
+                }
+                {
+                    cartToast &&
+                    <Toast onClose={() => setCartToast(false)} show={cartToast} delay={3000} autohide>
+                        <Toast.Header>
+                            <strong className="me-auto">Book already in cart!</strong>
+                        </Toast.Header>
+                        <Toast.Body>
+                            You already have this book in your cart!
+                        </Toast.Body>
+                    </Toast>
+                }
+            </ToastContainer>
         </>
     );
 }

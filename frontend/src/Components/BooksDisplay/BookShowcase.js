@@ -22,7 +22,7 @@ const BookShowcase = () => {
                 const result = res.data.books;
                 setBooks(result);
             });
-    }, []);
+    }, [cart]);
 
     useEffect(() => {
         const cartId = localStorage.getItem("cartId");
@@ -31,7 +31,7 @@ const BookShowcase = () => {
             .then(res => {
                 setCart(res.data.books)
             })
-    }, [])
+    }, [books])
 
     const addItem = (id, title) => {
         const cartId = localStorage.getItem("cartId");
