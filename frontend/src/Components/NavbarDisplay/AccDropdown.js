@@ -9,6 +9,7 @@ const AccDropdown = () => {
     const [role, setRole] = useState();
     const [id, setId] = useState();
     const navigate = useNavigate();
+    const storageValues = ["username", "cartId", "token", "role", "tac"]
 
     useEffect(() => {
         if (localStorage.getItem("username")) setUsername(localStorage.getItem("username"))
@@ -17,10 +18,7 @@ const AccDropdown = () => {
     }, [])
 
     const handleLogout = () => {
-        localStorage.removeItem("username")
-        localStorage.removeItem("cartId")
-        localStorage.removeItem("token")
-        localStorage.removeItem("role")
+        storageValues.forEach(value => localStorage.removeItem(value))
         navigate("/")
     }
 

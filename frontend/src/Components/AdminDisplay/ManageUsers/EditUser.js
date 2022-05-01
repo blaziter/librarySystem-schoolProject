@@ -62,7 +62,6 @@ const EditUser = () => {
                                         <Form.Select>
                                             <option>Open this select menu</option>
                                             <option value="Customer">Customer</option>
-                                            <option value="Student">Student</option>
                                             <option value="Admin">Admin</option>
                                         </Form.Select>
                                     </Form.Group>

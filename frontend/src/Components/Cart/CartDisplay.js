@@ -80,9 +80,18 @@ const CartDisplay = () => {
                                 }
                             </Card.Body>
                         </Card>
-                        <LinkContainer to="checkout">
-                            <Button variant="success" className="float-right margin-top-1rem">Checkout</Button>
-                        </LinkContainer>
+                        {
+                            localStorage.getItem("tac") == "undefined"
+                            &&
+                            <Button variant="success" className="float-right margin-top-1rem" disabled>Please update your profile info!</Button>
+                        }
+                        {
+                            localStorage.getItem("tac") == "true"
+                            &&
+                            <LinkContainer to="checkout">
+                                <Button variant="success" className="float-right margin-top-1rem">Checkout</Button>
+                            </LinkContainer>
+                        }
                     </Card.Body>
                 </Card>
             </Container>

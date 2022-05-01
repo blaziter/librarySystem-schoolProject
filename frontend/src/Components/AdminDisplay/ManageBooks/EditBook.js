@@ -61,7 +61,7 @@ const EditBook = () => {
                                 <Col>
                                     <Form.Group className="mb-3" controlId="book.name" onChange={e => setEditedBook({ ...editedBook, name: e.target.value })}>
                                         <Form.Label>Book's name: </Form.Label>
-                                        <Form.Control placeholder="Book's name" />
+                                        <Form.Control placeholder={book.name} />
                                     </Form.Group>
                                 </Col>
                             </Row>
@@ -69,26 +69,26 @@ const EditBook = () => {
                                 <Col>
                                     <Form.Group className="mb-3" controlId="book.author" onChange={e => setEditedBook({ ...editedBook, author: e.target.value })}>
                                         <Form.Label>Author: </Form.Label>
-                                        <Form.Control placeholder="Author" />
+                                        <Form.Control placeholder={book.author} />
                                     </Form.Group>
                                 </Col>
                                 <Col>
                                     <Form.Group className="mb-3" controlId="book.price" onChange={e => setEditedBook({ ...editedBook, price: e.target.value })}>
                                         <Form.Label>Price: </Form.Label>
-                                        <Form.Control placeholder="Price" type="number" />
+                                        <Form.Control placeholder={book.price} type="number" />
                                     </Form.Group>
                                 </Col>
                             </Row>
                             <Form.Group className="mb-3" controlId="book.desc" onChange={e => setEditedBook({ ...editedBook, description: e.target.value })}>
                                 <Form.Label>Description: </Form.Label>
-                                <Form.Control placeholder="Description" as="textarea" rows={3} />
+                                <Form.Control placeholder={book.description} as="textarea" rows={3} />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="book.year" onChange={e => setEditedBook({ ...editedBook, year: e.target.value })}>
                                 <Form.Label>Book's year of publication: </Form.Label>
-                                <Form.Control placeholder="Year of publication" type="number" />
+                                <Form.Control placeholder={book.year} type="number" />
                             </Form.Group>
-                            <Button variant="success" className="float-right" type="submit">Update book</Button>
-                            <Button variant="danger" className="float-right margin-right-05rem" onClick={handleDelete}>Delete book</Button>
+                            <Button variant="success" className="float-right" type="submit">Update {book.name}</Button>
+                            <Button variant="danger" className="float-right margin-right-05rem" onClick={handleDelete}>Delete {book.name}</Button>
                         </Form>
                     </Card.Body>
                 </Card>

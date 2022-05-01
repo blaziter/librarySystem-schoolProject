@@ -39,6 +39,7 @@ const NavbarDisplay = () => {
                     localStorage.setItem("username", res.data.username)
                     localStorage.setItem("cartId", res.data.cartId)
                     localStorage.setItem("role", res.data.role)
+                    localStorage.setItem("tac", res.data.tac)
                     return setLoginState(true);
                 })
                 .catch(err => {

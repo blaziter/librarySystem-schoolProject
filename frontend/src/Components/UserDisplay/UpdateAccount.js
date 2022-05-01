@@ -61,7 +61,7 @@ const UpdateAccount = () => {
                                     <Form.Control type="text" placeholder="Zip" required />
                                 </Form.Group>
                             </Row>
-                            <Form.Group className="mb-3">
+                            <Form.Group className="mb-3" onChange={e => setUser({ ...user, tac: true })}>
                                 <Form.Check
                                     required
                                     label="Agree to terms and conditions"

@@ -41,7 +41,7 @@ const UsersMenu = () => {
                                                 {user.role}
                                             </Card.Subtitle>
                                             <Card.Text>
-                                                {user.email}
+                                                {`Agreement to terms and conditions: ${user.tac}`}
                                             </Card.Text>
                                             <LinkContainer to={`/admin/user/${user._id}`}>
                                                 <Button variant="success" className="float-right">Edit {user.username}</Button>
